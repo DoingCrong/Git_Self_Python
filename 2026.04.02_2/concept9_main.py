@@ -6,7 +6,7 @@ from concept9_service import (
     selectById,
     update,
     delete,
-    # graph
+    graph
  )
 
 def menu():
@@ -43,3 +43,6 @@ while True:
             delete()
         case 6:
             graph()
+        case _:
+            print("그건 할 수 없어요")
+            break

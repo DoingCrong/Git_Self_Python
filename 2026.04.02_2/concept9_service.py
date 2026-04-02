@@ -1,8 +1,14 @@
 import pymysql
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
+
+plt.rcParams['font.family'] = 'Malgun Gothic'
+plt.rcParams['axes.unicode_minus'] = False
 
 from concept9_db_config import db_connect
+
+please = []
 
 #insert
 def insert():
@@ -54,6 +60,8 @@ def insert():
         """
         cursor.execute(sql, (trade_no, trade_date, customer_name, item_name, qty, unit_price, supply_amount, vat, total_amount))
         conn.commit()
+
+        please.append(save)
 
         print(f"{trade_no}님 거래 명세서 작성완료!")
 
@@ -208,6 +216,8 @@ def update():
         cursor.execute(sql, (trade_date, customer_name, item_name, qty, unit_price, supply_amount, vat, total_amount, check_no))
         conn.commit()
 
+        please.append(save)
+
         print(f"{check_no}님의 정보가 수정되었습니다.")
 
     except Exception as e:
@@ -262,3 +272,53 @@ def delete():
         cursor.close()
         conn.close()
 
+def graph():
+    conn = db_connect()
+    try:
+        # 1. Pandas로 DB 자료 읽기
+        df = pd.read_sql("SELECT * FROM trade_statement", conn)
+        if df.empty:
+            print("집계할 데이터가 없습니다.")
+            return
+
+        # 2. 사용자 선택 입력
+        print("\n--- 차트 설정 ---")
+        print("1. 그룹 기준: 1)거래처명 2)품목명 3)거래일자")
+        g_idx = input("선택: ")
+        group_cols = {"1": "customer_name", "2": "item_name", "3": "trade_date"}
+        group_col = group_cols.get(g_idx, "customer_name")
+
+        print("\n2. 집계 항목: 1)수량 2)공급가액 3)부가세 4)합계금액")
+        v_idx = input("선택: ")
+        val_cols = {"1": "qty", "2": "supply_amount", "3": "vat", "4": "total_amount"}
+        val_col = val_cols.get(v_idx, "total_amount")
+
+        print("\n3. 집계 방식: 1)합계 2)평균 3)개수")
+        f_idx = input("선택: ")
+        # Numpy 함수 매핑
+        func_map = {"1": np.sum, "2": np.mean, "3": len}
+        func_label = {"1": "합계", "2": "평균", "3": "개수"}
+        agg_func = func_map.get(f_idx, np.sum)
+
+        print("\n4. 차트 종류: 1)막대그래프 2)선그래프")
+        c_idx = input("선택: ")
+
+        # 3. 데이터 집계 (Pandas + Numpy)
+        result_df = df.groupby(group_col)[val_col].agg(agg_func)
+
+        # 4. 시각화
+        title = f"{group_col}별 {val_col} {func_label.get(f_idx, '합계')}"
+        if c_idx == "2":
+            result_df.plot(kind='line', marker='o', figsize=(10, 5))
+        else:
+            result_df.plot(kind='bar', figsize=(10, 5))
+
+        plt.title(title)
+        plt.ylabel(val_col)
+        plt.grid(True, axis='y', linestyle='--', alpha=0.7)
+        plt.show()
+
+    except Exception as e:
+        print(f"오류 발생: {e}")
+    finally:
+        conn.close()
