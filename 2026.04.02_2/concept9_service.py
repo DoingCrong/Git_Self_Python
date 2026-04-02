@@ -216,3 +216,49 @@ def update():
     finally:
         cursor.close()
         conn.close()
+
+def delete():
+    conn = db_connect()
+    cursor = conn.cursor()
+
+    try:
+        print("\n==== 5. 삭제 ====")
+        check_no = input("검색하실 거래번호 : ").strip()
+
+        check_sql = """
+        select * from trade_statement
+        where trade_no=%s
+        """
+        cursor.execute(check_sql,(check_no))
+
+        row = cursor.fetchone()
+
+        if row is None:
+            print("해당 데이터가 존재하지 않습니다.")
+            return
+        
+        print("\n==== 삭제페이지 ====")
+
+        yesorno = input("정말 삭제 하시겠습니까? (y/n) : ").lower().strip()
+
+        if yesorno != "y":
+            print("삭제를 취소합니다.\n" \
+                  "다시 메인화면으로 돌아갑니다.")
+            return
+        
+        sql="""
+        delete from trade_statement
+        where trade_no=%s
+        """
+        cursor.execute(sql,(check_sql))
+        conn.commit()
+
+        print("삭제 완료!")
+
+    except Exception as e:
+        print("수정 중 오류 발생 :", e)
+
+    finally:
+        cursor.close()
+        conn.close()
+

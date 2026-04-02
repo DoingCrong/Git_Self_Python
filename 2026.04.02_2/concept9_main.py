@@ -5,7 +5,7 @@ from concept9_service import (
     selectAll,
     selectById,
     update,
-    # delete,
+    delete,
     # graph
  )
 
