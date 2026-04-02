@@ -3,10 +3,10 @@ import numpy as np
 from concept5_service import (
     insert,
     selectAll,
-    selectById,
-    update,
-    delete,
-    graph
+    # selectById,
+    # update,
+    # delete,
+    # graph
  )
 
 def menu():

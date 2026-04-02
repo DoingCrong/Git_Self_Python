@@ -74,7 +74,7 @@ def selectAll():
         
         sql = """
         select * from trade_statement
-        order by trade_date, desc total_amount
+        order by trade_date, total_amount desc
         """
         cursor.execute(sql)
         rows = cursor.fetchall()
@@ -82,18 +82,18 @@ def selectAll():
         if len(rows) == 0:
             print("등록된 데이터가 없습니다.")
 
-        print("거래번호 /\t" \
-              "거래일자 /\t" \
-              "거래처명 /\t" \
-              "품목명 /\t" \
-              "수량 /\t" \
-              "단가 /\t" \
-              "공급가액 /\t" \
-              "부가세 /\t" \
-              "합계금액 /\t")
+        print("거래번호\t" \
+              "거래일자\t" \
+              "거래처명\t" \
+              "품목명\t" \
+              "수량\t" \
+              "단가\t" \
+              "공급가액\t" \
+              "부가세\t" \
+              "합계금액")
         
         for row in rows:
-            print(f"{row[0]} /\t{row[1]} /\t{row[2]} /\t{row[3]} /\t{row[4]} /\t{row[5]} /\t{row[6]} /\t{row[7]} /\t{row[8]}")
+            print(f"{row[0]}\t{row[1]}\t{row[2]}\t{row[3]}\t{row[4]}\t{row[5]}\t{row[6]}\t{row[7]}\t{row[8]}")
 
     except Exception as e:
         print("조회 중 오류 발생 :", e)
