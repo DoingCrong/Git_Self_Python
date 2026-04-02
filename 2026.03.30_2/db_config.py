@@ -5,7 +5,7 @@ def db_connect():
         host="localhost",
         user="root",          # 본인 MySQL 계정
         password="1234",      # 본인 MySQL 비밀번호
-        database="tradedb",  # 사용할 데이터베이스명
+        database="pythondb",  # 사용할 데이터베이스명
         charset="utf8"
     )
     return conn
