@@ -3,7 +3,7 @@ import numpy as np
 from concept5_service import (
     insert,
     selectAll,
-    # selectById,
+    selectById,
     # update,
     # delete,
     # graph

@@ -81,6 +81,7 @@ def selectAll():
 
         if len(rows) == 0:
             print("등록된 데이터가 없습니다.")
+            return
 
         print("거래번호\t" \
               "거래일자\t" \
@@ -94,6 +95,46 @@ def selectAll():
         
         for row in rows:
             print(f"{row[0]}\t{row[1]}\t{row[2]}\t{row[3]}\t{row[4]}\t{row[5]}\t{row[6]}\t{row[7]}\t{row[8]}")
+
+    except Exception as e:
+        print("조회 중 오류 발생 :", e)
+
+    finally:
+        cursor.close()
+        conn.close()
+
+def selectById():
+    conn = db_connect()
+    cursor = conn.cursor()
+
+    try:
+        print("\n==== 3. 거래번호 조회 ====")
+
+        check_no = input("검색하실 거래번호 : ").strip()
+
+        check_sql = """
+        select * from trade_statement
+        where trade_no=%s
+        """
+        cursor.execute(check_sql,(check_no))
+
+        row = cursor.fetchone()
+
+        if row is None:
+            print("해당 데이터가 존재하지 않습니다.")
+            return
+        
+        print(f"======== {check_no}님의 정보 ========")
+        print("거래번호 : ",row[0])
+        print("거래일자 : ",row[1])
+        print("거래처명 : ",row[2])
+        print("품목명 : ",row[3])
+        print("수량 : ",row[4])
+        print("단가 : ",row[5])
+        print("공급가액 : ",row[6])
+        print("부가세 : ",row[7])
+        print("합계금액 : ",row[8])
+        print("="*25)
 
     except Exception as e:
         print("조회 중 오류 발생 :", e)
