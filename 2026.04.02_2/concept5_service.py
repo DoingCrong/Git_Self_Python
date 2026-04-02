@@ -33,6 +33,8 @@ def insert():
         vat = supply_amount*0.1 #부가세
         total_amount = supply_amount+vat #합계금액
 
+        #그래프 쓸때 딕셔너리가 필요할까 싶어서 집어넣음
+        #나중엔 삭제할수도?
         save = {
             "거래번호" : trade_no,
             "거래일자" : trade_date,
@@ -59,6 +61,43 @@ def insert():
     except pymysql.err.IntegrityError:
         print("이미 존재하는 거래번호 입니다.")
     
+    finally:
+        cursor.close()
+        conn.close()
+
+def selectAll():
+    conn = db_connect()
+    cursor = conn.cursor()
+
+    try:
+        print("\n==== 2. 전체조회 ====")
+        
+        sql = """
+        select * from trade_statement
+        order by trade_date, desc total_amount
+        """
+        cursor.execute(sql)
+        rows = cursor.fetchall()
+
+        if len(rows) == 0:
+            print("등록된 데이터가 없습니다.")
+
+        print("거래번호 /\t" \
+              "거래일자 /\t" \
+              "거래처명 /\t" \
+              "품목명 /\t" \
+              "수량 /\t" \
+              "단가 /\t" \
+              "공급가액 /\t" \
+              "부가세 /\t" \
+              "합계금액 /\t")
+        
+        for row in rows:
+            print(f"{row[0]} /\t{row[1]} /\t{row[2]} /\t{row[3]} /\t{row[4]} /\t{row[5]} /\t{row[6]} /\t{row[7]} /\t{row[8]}")
+
+    except Exception as e:
+        print("조회 중 오류 발생 :", e)
+
     finally:
         cursor.close()
         conn.close()
