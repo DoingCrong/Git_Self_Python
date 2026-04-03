@@ -18,10 +18,10 @@ for item in items:
     test4 = item.find("option", id="codding").text
     test5 = item.find("option", id="music").text
 
-    if not (test2):
+    if not (test2): #값이 진짜 없는지 있는지 사용
         test2 = "비어있습니다."
 
-    if test3 is None: #null체크용도 : null도값이다
+    if test3 is None: #null체크용도로 사용해야함 : null도값이다
         test3 = "비어있습니다."
     else:
         test3 = "null도 값이다."
