@@ -275,18 +275,18 @@ def delete():
 def graph():
     conn = db_connect()
     try:
-        # 1. Pandas로 DB 자료 읽기
+        print("\n==== 6. 그래프 ====")
         df = pd.read_sql("SELECT * FROM trade_statement", conn)
+
         if df.empty:
-            print("집계할 데이터가 없습니다.")
+            print("해당 데이터가 존재하지 않습니다.")
             return
 
-        # 2. 사용자 선택 입력
-        print("\n--- 차트 설정 ---")
+        print("\n==== 차트페이지 ====")
         print("1. 그룹 기준: 1)거래처명 2)품목명 3)거래일자")
-        g_idx = input("선택: ")
+        group = input("선택: ")
         group_cols = {"1": "customer_name", "2": "item_name", "3": "trade_date"}
-        group_col = group_cols.get(g_idx, "customer_name")
+        group_col = group_cols.get(group, "customer_name")
 
         print("\n2. 집계 항목: 1)수량 2)공급가액 3)부가세 4)합계금액")
         v_idx = input("선택: ")
@@ -295,7 +295,7 @@ def graph():
 
         print("\n3. 집계 방식: 1)합계 2)평균 3)개수")
         f_idx = input("선택: ")
-        # Numpy 함수 매핑
+
         func_map = {"1": np.sum, "2": np.mean, "3": len}
         func_label = {"1": "합계", "2": "평균", "3": "개수"}
         agg_func = func_map.get(f_idx, np.sum)
@@ -303,10 +303,9 @@ def graph():
         print("\n4. 차트 종류: 1)막대그래프 2)선그래프")
         c_idx = input("선택: ")
 
-        # 3. 데이터 집계 (Pandas + Numpy)
         result_df = df.groupby(group_col)[val_col].agg(agg_func)
 
-        # 4. 시각화
+
         title = f"{group_col}별 {val_col} {func_label.get(f_idx, '합계')}"
         if c_idx == "2":
             result_df.plot(kind='line', marker='o', figsize=(10, 5))
