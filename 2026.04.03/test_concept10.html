@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+</head>
+<body>
+    <h2>회원가입</h2>
+    <hr>
+    <form action="">
+        <table border="1">
+            <tr>
+                <th>아이디</th>
+                <td><input type="text" id="id"></td>
+            </tr>
+            
+            <tr>
+                <th>비밀번호</th>
+                <td><input type="password" id="password" placeholder="10자리이상"></td>
+            </tr>
+
+            <tr>
+                <th>비밀번호확인</th>
+                <td><input type="password" id="passwordcheckd"></td>
+            </tr>
+    
+            <tr>
+                <th>이름</th>
+                <td><input type="text" id="name"></td>
+            </tr>
+
+            <tr>
+                <th>이메일</th>
+                <td><input type="email" id="email" placeholder="example@naver.com"></td>
+            </tr>
+
+            <tr>
+                <th>연락처</th>
+                <td><input type="text" id="phone" placeholder="010-2367-9515"></td>
+            </tr>
+
+            <tr>
+                <th>성별</th>
+                <td><input type="radio" name="sex" value="남자">남자
+                    <input type="radio" name="sex" value="여자">여자
+                </td>
+            </tr>
+
+            <tr>
+                <th>직업</th>
+                <td>
+                    <select name="job" id="job">
+                        <option value="first">---선택---</option>
+                        <option value="codding">코딩</option>
+                        <option value="music">음악</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2" align="center">
+                <input type="submit" value="가입하기">
+                <input type="reset" value="다시작성">
+                </td>
+            </tr>
+        </table>
+    </form>
+    <hr>
+</body>
+</html>
