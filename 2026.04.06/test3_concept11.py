@@ -22,17 +22,22 @@ X_train, X_test, y_train, y_test = train_test_split(
 model = LinearRegression()
 
 #4. 모델 학습
-#반드시 트레인(소수) 데이터로
+#반드시 트레인(시식용?) 데이터로
 model.fit(X_train, y_train)
 
 #5. 테스트 데이터로 예측
-#반드시 테스트(다수) 데이터로
+#반드시 테스트(구매할?) 데이터로
 y_pre = model.predict(X_test)
 
 #6. 결과 출력
 print("테스트 입력 : ", X_test)
 print("실제 값 : ", y_test)
 print("예측 값 : ", y_pre)
+
+# 7. 새로운 데이터 예측
+k=int(input("평형을 입력하세요 : "))
+pred_price = model.predict([[k]])
+print(f"예상 가격 : {pred_price}")
 
 #7. 그래프 출력
 plt.scatter(X_train, y_train, label="Train(시식용)데이터")
