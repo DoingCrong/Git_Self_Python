@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>indexPage</title>
+</head>
+<body>
+    <h2 align="center">회원가입</h2>
+    <hr>
+    <form action="/insert" method="post">
+        <table border="1" align="center">
+            <tr>
+                <th>아이디</th>
+                <td><input type="text" name="id"></td>
+            </tr>
+
+            <tr>
+                <th>비밀번호</th>
+                <td><input type="password" name="password"></td>
+            </tr>
+
+            <tr>
+                <th>연락처</th>
+                <td><input type="text" name="phone"></td>
+            </tr>
+
+            <tr>
+                <th>생년월일</th>
+                <td><input type="text" name="age" placeholder="19980907(-없이)"></td>
+            </tr>
+
+            <tr>
+                <th>주소</th>
+                <td><input type="text" name="home"></td>
+            </tr>
+
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" value="가입">
+                    <input type="reset" value="취소">
+                </td>
+            </tr>
+        </table>
+    </form>
+    <hr>
+</body>
+</html>
