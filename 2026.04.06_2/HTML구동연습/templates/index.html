@@ -3,11 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>indexPage</title>
 </head>
 <body>
     <hr>
     <h2 align="center">안녕하세요 오늘은 2026년 04월 06일입니다.</h2>
+    <form action="/result" method="post">
+        숫자1 : <input type="text" name="num1" id=""> <br>
+        연산자
+        <select name="op" id="">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+        숫자2 : <input type="text" name="num2" id=""> <br>
+
+        <input type="submit" value="전송">
+        <input type="reset" value="리셋">
+    </form>
     <hr>
 </body>
 </html>
