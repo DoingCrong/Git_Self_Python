@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1
+    <title>indexPage</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>성적입력</h2>
+    <hr>
+        <form action="/insert" method="post">
+            <table align="center" border="1">
+                <tr>
+                    <th colspan="2" align="center">성적입력</th>
+                </tr>
+
+                <tr>
+                    <th>이름</th>
+                    <td><input type="text" name="name"></td>
+                    </tr>
+                <tr>
+                    <th>국어</th>
+                    <td><input type="text" name="kor"></td>
+                </tr>
+                <tr>
+                    <th>영어</th>
+                    <td><input type="text" name="eng"></td>
+                </tr>
+                <tr>
+                    <th>수학</th>
+                    <td><input type="text" name="math"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <input type="submit" value="입력">
+                        <input type="reset" value="초기화">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    <hr>
+</body>
+</html>  

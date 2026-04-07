@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>resultPage</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>성적결과</h2>
+    <hr>
+    <table align="center" border="1">
+        <tr>
+            <th colspan="7" align="center">성적결과</th>
+        </tr>
+        <tr>
+            <th>이름</th>
+            <th>국어</th>
+            <th>영어</th>
+            <th>수학</th>
+            <th>총점</th>
+            <th>평균</th>
+            <th>학점</th>
+        </tr>
+
+        <tr>
+            <td>{{name}}</td>
+            <td>{{kor}}</td>
+            <td>{{eng}}</td>
+            <td>{{math}}</td>
+            <td>{{total}}</td>
+            <td>{{avg}}</td>
+            <td>{{grade}}</td>
+        </tr>
+    </table>
+    <hr>
+
+    <a href="/">돌아가기</a>
+</body>
+</html>
