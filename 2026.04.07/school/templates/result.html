@@ -11,9 +11,10 @@
     <hr>
     <table align="center" border="1">
         <tr>
-            <th colspan="7" align="center">성적결과</th>
+            <th colspan="8" align="center">성적결과</th>
         </tr>
         <tr>
+            <th>번호</th>
             <th>이름</th>
             <th>국어</th>
             <th>영어</th>
@@ -23,7 +24,8 @@
             <th>학점</th>
         </tr>
 
-        <tr>
+        <!-- 자료가 적으면 일일이 넣었지만 100개면 100개를 넣을 수 없기때문..-->
+        <!-- <tr>
             <td>{{name}}</td>
             <td>{{kor}}</td>
             <td>{{eng}}</td>
@@ -31,7 +33,20 @@
             <td>{{total}}</td>
             <td>{{avg}}</td>
             <td>{{grade}}</td>
+        </tr> -->
+        <!--python에서 table for문 작성하는법 -->
+        {% for row in rows %}
+        <tr>
+            <td>{{row.id}}</td>
+            <td>{{row.name}}</td>
+            <td>{{row.kor}}</td>
+            <td>{{row.eng}}</td>
+            <td>{{row.math}}</td>
+            <td>{{row.total}}</td>
+            <td>{{row.avg}}</td>
+            <td>{{row.grade}} </td>
         </tr>
+        {% endfor %}
     </table>
     <hr>
 
