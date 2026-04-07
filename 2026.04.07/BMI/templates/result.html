@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI 결과</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main class="page-shell">
+        <section class="card result-card">
+            <p class="eyebrow">BMI Result</p>
+            <h1>{{ name }}님의 측정 결과</h1>
+            <p class="intro">입력한 정보를 바탕으로 계산한 BMI 결과입니다.</p>
+
+            <div class="result-highlight">
+                <span class="result-label">BMI</span>
+                <strong class="result-value">{{ bmi }}</strong>
+                <span class="result-status">{{ result }}</span>
+            </div>
+
+            <table class="result-table">
+                <tr>
+                    <th>이름</th>
+                    <td>{{ name }}</td>
+                </tr>
+                <tr>
+                    <th>키</th>
+                    <td>{{ tall }}</td>
+                </tr>
+                <tr>
+                    <th>몸무게</th>
+                    <td>{{ weight }}</td>
+                </tr>
+                <tr>
+                    <th>판정</th>
+                    <td>{{ result }}</td>
+                </tr>
+            </table>
+
+            <a class="back-link" href="/">다시 입력하러 가기</a>
+        </section>
+    </main>
+</body>
+</html>
