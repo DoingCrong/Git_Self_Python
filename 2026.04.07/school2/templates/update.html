@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>updatePage</title>
+</head>
+<body>
+    <h2>성적입력</h2>
+    <hr>
+        <form action="/update" method="post">
+            <table align="center" border="1">
+                <tr>
+                    <th align="center" colspan="2">
+                        성적수정
+                    </th>
+                </tr>
+
+                <tr>
+                    <th>
+                        이름
+                    </th>
+                    <td>
+                        <!-- <input type="text" name="name" value="{{row2.name}}" readonly> -->
+                        {{row2.name}}
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>
+                        국어
+                    </th>
+                    <td>
+                        <input type="number" name="kor" value="{{row2.kor}}" required>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>
+                        영어
+                    </th>
+                    <td>
+                        <input type="number" name="eng" value="{{row2.eng}}" required>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>
+                        수학
+                    </th>
+                    <td>
+                        <input type="number" name="math" value="{{row2.math}}" required>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td align="center" colspan="2">
+                        <input type="submit" value="전송">
+                        <input type="reset" value="취소">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    <hr>
+    <a href="/">[ 돌아가기 ]</a>
+</body>
+</html>

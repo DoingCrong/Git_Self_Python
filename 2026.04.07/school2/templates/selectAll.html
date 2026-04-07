@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>selectAllPage</title>
+</head>
+<body>
+    <h2>전체성적조회</h2>
+    <hr>
+        <table align="center" border="1">
+            <tr>
+                <th colspan="8">
+                    전체성적조회
+                </th>
+            </tr>
+
+            <tr>
+                <th>번호</th>
+                <th>이름</th>
+                <th>국어</th>
+                <th>영어</th>
+                <th>수학</th>
+                <th>총점</th>
+                <th>평균</th>
+                <th>학점</th>
+            </tr>
+
+            {% for row in rows %}
+            <tr>
+                <td>{{row.id}}</td>
+                <td>{{row.name}}</td>
+                <td>{{row.kor}}</td>
+                <td>{{row.eng}}</td>
+                <td>{{row.math}}</td>
+                <td>{{row.total}}</td>
+                <td>{{row.average}}</td>
+                <td>{{row.grade}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    <hr>
+
+    <a href="/">[ 링크테스트용 - 메뉴바로가기 ]</a>
+</body>
+</html>
