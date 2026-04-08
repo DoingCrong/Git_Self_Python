@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인 완료</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="page-shell">
+        <div class="card status-card">
+            <div class="success-icon">✓</div>
+            <h1>로그인 완료</h1>
+            <p class="subtitle"><strong>{{ user_id }}</strong> 님, 반갑습니다.</p>
+            <div class="form-actions center">
+                <a href="/logout" class="btn btn-primary">로그아웃</a>
+                <a href="/home">홈으로</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="page-shell">
+        <div class="card auth-card">
+            <div class="hero-badge">Welcome Back</div>
+            <h1>로그인</h1>
+            <p class="subtitle">가입한 아이디와 비밀번호로 접속하세요.</p>
+
+            {% if msg %}
+            <div class="alert">{{ msg }}</div>
+            {% endif %}
+
+            <form action="/login" method="post" class="stack-form">
+                <div class="field">
+                    <label for="login-id">아이디</label>
+                    <input id="login-id" type="text" name="id" placeholder="아이디를 입력하세요" required>
+                </div>
+
+                <div class="field">
+                    <label for="login-password">비밀번호</label>
+                    <input id="login-password" type="password" name="password" placeholder="비밀번호를 입력하세요" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary wide">로그인</button>
+            </form>
+
+            <div class="link-row">
+                <a href="/main">메인으로</a>
+                <a href="/join">회원가입</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
