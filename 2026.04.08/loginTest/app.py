@@ -112,6 +112,20 @@ def home():
     # user_id 값을 html로 넘겨줌
     return render_template("home.html", id=session["id"])
 
+@app.route("/logout")
+def logout():
+    #세션에 있는 id를 None값으로 바꿔줌
+    session.pop("id", None)
+
+    #메뉴화면을 안만들고 작업해서 걍 login으로
+    return redirect(url_for("login"))
+"""
+동작 방식: redirect는 브라우저에게 주소를 옮기라고 시키는 것이며, 이때 브라우저의 재접속은 항상 GET 방식입니다.
+
+함수 연결: logout 후 login 함수가 GET 방식으로 다시 호출되므로, 자연스럽게 로그인 화면(render_template)이 뜹니다.
+
+결과: 사용자 입장에서는 로그아웃 버튼을 누르자마자 다시 깔끔한 로그인 페이지로 되돌아가는 흐름이 완성됩니다.
+"""
 
 # 서버가 구동하려면 좌표(진입점) 지정해준다
 if __name__ == "__main__":
