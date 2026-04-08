@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="page-shell">
+        <section class="card form-card">
+            <div class="card-header">
+                <p class="eyebrow">Welcome Back</p>
+                <h1>로그인</h1>
+                <p class="subtext">아이디와 비밀번호를 입력해 서비스를 이용하세요.</p>
+            </div>
+
+            {% if msg %}
+            <div class="message">{{ msg }}</div>
+            {% endif %}
+
+            <form method="post" class="stack-form">
+                <label class="field">
+                    <span>아이디</span>
+                    <input type="text" name="id" placeholder="아이디를 입력하세요">
+                </label>
+
+                <label class="field">
+                    <span>비밀번호</span>
+                    <input type="password" name="password" placeholder="비밀번호를 입력하세요">
+                </label>
+
+                <input class="button primary" type="submit" value="로그인">
+            </form>
+
+            <p class="helper-text">
+                아직 회원이 아니라면
+                <a href="{{ url_for('register') }}">회원가입</a>
+            </p>
+        </section>
+    </div>
+</body>
+</html>

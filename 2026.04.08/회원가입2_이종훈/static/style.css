@@ -1,0 +1,212 @@
+:root {
+    --bg-top: #fff8ef;
+    --bg-bottom: #f4efe6;
+    --card-bg: rgba(255, 255, 255, 0.92);
+    --card-border: rgba(122, 92, 62, 0.14);
+    --text-main: #2d241b;
+    --text-muted: #7a6856;
+    --primary: #b86a2b;
+    --primary-strong: #9d551b;
+    --secondary: #efe3d3;
+    --input-bg: #fffdf9;
+    --shadow: 0 18px 45px rgba(93, 65, 36, 0.12);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Segoe UI", "Malgun Gothic", sans-serif;
+    color: var(--text-main);
+    background:
+        radial-gradient(circle at top left, rgba(255, 212, 158, 0.55), transparent 30%),
+        linear-gradient(160deg, var(--bg-top), var(--bg-bottom));
+}
+
+a {
+    color: var(--primary-strong);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.page-shell {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 20px;
+}
+
+.card {
+    width: min(100%, 520px);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 24px;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(10px);
+}
+
+.form-card,
+.home-card {
+    padding: 32px;
+}
+
+.card-header {
+    margin-bottom: 24px;
+}
+
+.eyebrow {
+    margin: 0 0 8px;
+    color: var(--primary);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.card-header h1,
+.welcome-user {
+    margin: 0;
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+}
+
+.subtext {
+    margin: 10px 0 0;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+.stack-form {
+    display: grid;
+    gap: 16px;
+}
+
+.field {
+    display: grid;
+    gap: 8px;
+}
+
+.field span,
+.field legend {
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+.field input[type="text"],
+.field input[type="password"],
+.field input[type="date"] {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #dbcab8;
+    border-radius: 14px;
+    background: var(--input-bg);
+    color: var(--text-main);
+    font-size: 0.98rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.field input:focus {
+    outline: none;
+    border-color: rgba(184, 106, 43, 0.65);
+    box-shadow: 0 0 0 4px rgba(184, 106, 43, 0.14);
+    transform: translateY(-1px);
+}
+
+fieldset.field {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.choice {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-right: 18px;
+    color: var(--text-muted);
+}
+
+.button-row {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 14px;
+    padding: 14px 18px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.button:hover {
+    transform: translateY(-2px);
+    text-decoration: none;
+}
+
+.primary {
+    flex: 1;
+    background: linear-gradient(135deg, var(--primary), var(--primary-strong));
+    color: #fff;
+    box-shadow: 0 12px 24px rgba(184, 106, 43, 0.22);
+}
+
+.secondary {
+    background: var(--secondary);
+    color: var(--text-main);
+}
+
+.helper-text {
+    margin: 20px 0 0;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+.message {
+    margin-bottom: 18px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: #fff1ef;
+    color: #aa4b3c;
+    font-weight: 600;
+}
+
+.home-card {
+    text-align: center;
+}
+
+.home-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+}
+
+@media (max-width: 640px) {
+    .form-card,
+    .home-card {
+        padding: 24px;
+        border-radius: 20px;
+    }
+
+    .button-row {
+        flex-direction: column;
+    }
+
+    .choice {
+        display: flex;
+        margin: 0 0 10px;
+    }
+}
