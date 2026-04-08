@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>loginPage</title>
+</head>
+<body>
+    {% if msg %} <!-- (이딴식으로 적어도)msg값이 있으면 띄운다..?-->
+    {{msg}}     <!-- app.py/63라인 -->
+    {% endif %} <!-- python if문 종료 -->
+    
+    <h2 align="center">로그인페이지</h2>
+    <hr>
+        <form action="/login" method="post">
+            <table border="1" align="center">
+                <tr>
+                    <th colspan="2" align="center">로그인화면</th>
+                </tr>
+
+                <tr>
+                    <th>아이디</th>
+                    <td>
+                        <input type="text" name="id" required>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>패스워드</th>
+                    <td>
+                        <input type="password" name="password" required>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="2" align="center">
+                        <input type="submit" value="전송">
+                        <input type="reset" value="리셋">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    <hr>
+    <a href="/">[ 돌아가기 ]</a>
+</body>
+</html>
