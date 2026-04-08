@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>홈</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<nav class="navbar">
+    <div class="brand">MemberSystem</div>
+    <div class="nav-links">
+        <a href="/list">회원 목록</a>
+        <a href="/register">회원 추가</a>
+        <a href="/logout" class="logout">로그아웃</a>
+    </div>
+</nav>
+
+<div class="page-content center">
+    <div class="card">
+        <div class="logo">환영합니다 👋</div>
+        <div class="subtitle">{{ user_id }}님, 로그인되었습니다</div>
+        <div class="btn-row">
+            <a href="/list" class="btn btn-primary" style="text-align:center; text-decoration:none;">회원 목록 보기</a>
+            <a href="/register" class="btn btn-secondary" style="text-align:center; text-decoration:none;">회원 추가</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

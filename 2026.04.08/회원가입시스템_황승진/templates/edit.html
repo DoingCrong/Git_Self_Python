@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>회원 수정</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<nav class="navbar">
+    <div class="brand">MemberSystem</div>
+    <div class="nav-links">
+        <a href="/list">회원 목록</a>
+        <a href="/logout" class="logout">로그아웃</a>
+    </div>
+</nav>
+
+<div class="page-content center">
+    <div class="card">
+        <div class="logo">회원 수정</div>
+        <div class="subtitle">정보를 수정하세요</div>
+
+        <form action="/update" method="post">
+            <input type="hidden" name="id" value="{{ row.id }}">
+            <div class="field">
+                <label>아이디</label>
+                <input type="text" value="{{ row.id }}" readonly style="opacity:0.5;">
+            </div>
+            <div class="field">
+                <label>비밀번호</label>
+                <input type="password" name="password" value="{{ row.password }}" required>
+            </div>
+            <div class="field">
+                <label>연락처</label>
+                <input type="tel" name="phone" value="{{ row.phone }}">
+            </div>
+            <div class="field">
+                <label>생년월일</label>
+                <input type="date" name="birth" value="{{ row.birth }}">
+            </div>
+            <div class="field">
+                <label>주소</label>
+                <input type="text" name="address" value="{{ row.address }}">
+            </div>
+            <div class="field">
+                <label>취미</label>
+                <input type="text" name="hobby" value="{{ row.hobby }}">
+            </div>
+            <div class="field">
+                <label>성별</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="gender" value="남" {{ 'checked' if row.gender == '남' }}> 남자</label>
+                    <label><input type="radio" name="gender" value="여" {{ 'checked' if row.gender == '여' }}> 여자</label>
+                </div>
+            </div>
+            <div class="field">
+                <label>비고</label>
+                <textarea name="note">{{ row.note }}</textarea>
+            </div>
+            <div class="btn-row">
+                <button class="btn btn-primary" type="submit">수정 완료</button>
+                <a href="/list" class="btn btn-secondary" style="text-align:center; text-decoration:none;">취소</a>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

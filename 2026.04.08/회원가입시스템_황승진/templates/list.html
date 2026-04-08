@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>회원 목록</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<nav class="navbar">
+    <div class="brand">MemberSystem</div>
+    <div class="nav-links">
+        <a href="/home">홈</a>
+        <a href="/register">회원 추가</a>
+        <a href="/logout" class="logout">로그아웃</a>
+    </div>
+</nav>
+
+<div class="page-content">
+    <div class="card wide">
+        <h2>회원 목록</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>아이디</th>
+                    <th>연락처</th>
+                    <th>생년월일</th>
+                    <th>주소</th>
+                    <th>취미</th>
+                    <th>성별</th>
+                    <th>비고</th>
+                    <th>관리</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for row in rows %}
+                <tr>
+                    <td>{{ row.id }}</td>
+                    <td>{{ row.phone }}</td>
+                    <td>{{ row.birth }}</td>
+                    <td>{{ row.address }}</td>
+                    <td>{{ row.hobby }}</td>
+                    <td>
+                        <span class="badge {{ 'badge-m' if row.gender == '남' else 'badge-f' }}">
+                            {{ row.gender }}
+                        </span>
+                    </td>
+                    <td>{{ row.note }}</td>
+                    <td>
+                        <a href="/edit/{{ row.id }}" class="action-btn edit-btn">수정</a>
+                        <a href="/delete/{{ row.id }}" class="action-btn del-btn"
+                           onclick="return confirm('정말 삭제하시겠습니까?')">삭제</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
