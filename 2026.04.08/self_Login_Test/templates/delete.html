@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>deletePage</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+        <h2>회원탈퇴</h2>
+        <hr>
+        <form action="/delete" method="post">
+            <table border="1" align="center">
+                <tr>
+                    <th>
+                        {{id}}님 삭제 하시겠습니까?
+                    </th>
+                </tr>
+
+                <tr>
+                    <td align="center">
+                        <input type="submit" value="탈퇴">
+                        <a href="/loginOk"><input type="button" value="취소"></a>
+                    </td>
+                </tr>
+            </table>
+
+        </form>
+</body>
+</html>

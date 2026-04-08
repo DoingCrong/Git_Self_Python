@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>loginPage</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    {% if msg %}
+    {{msg}}
+    {% endif %}
+
+    <h2>로그인페이지</h2>
+    <hr>
+        <form action="/login" method="post">
+            <table align="center" border="1">
+                <tr>
+                    <th colspan="2" align="center">로그인입력</th>
+                </tr>
+
+                <tr>
+                    <th>아이디</th>
+                    <td>
+                        <input type="text" name="id" required>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>비밀번호</th>
+                    <td>
+                        <input type="password" name="password" required>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="2" align="center">
+                        <input type="submit" value="전송">
+                        <input type="reset" value="취소">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    <hr>
+    <a href="/">[ 메뉴로돌아가기 ]</a>
+</body>
+</html>

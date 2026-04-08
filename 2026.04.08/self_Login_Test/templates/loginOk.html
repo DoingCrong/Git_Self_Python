@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>loginOk</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>로그인Ok페이지</h1>
+    <hr>
+    <table border="1" align="center">
+        <tr>
+            <th align="center" colspan="8">
+                {{id}}님 환영합니다!
+            </th>
+        </tr>
+
+        <tr>
+            <td colspan="8" align="center">
+                ================ [ {{row.id}}님의 정보 ] ================
+            </td>
+        </tr>
+
+        <tr>
+            <th>아이디</th>
+            <th>비밀번호</th>
+            <th>전화번호</th>
+            <th>생년월일</th>
+            <th>주소</th>
+            <th>취미</th>
+            <th>성별</th>
+            <th>기타</th>
+        </tr>
+
+        <tr>
+            <td>{{row.id}}</td>
+            <td>{{row.password}}</td>
+            <td>{{row.phone}}</td>
+            <td>{{row.age}}</td>
+            <td>{{row.address}}</td>
+            <td>{{row.hobby}}</td>
+            <td>{{row.sex}}</td>
+            <td>{{row.etc}}</td>
+        </tr>
+
+        <tr>
+            <td colspan="8" align="center">
+                <a href="/update">[ 정보수정 ]</a>
+            </td>
+        </tr>
+
+        <tr>
+            <td align="center" colspan="8">
+                <a href="/logout">[ 로그아웃 ]</a>
+            </td>
+        </tr>
+
+        <tr>
+            <td align="center" colspan="8">
+                <a href="/delete">[ 회원탈퇴 ]</a>
+            </td>
+        </tr>
+
+        <tr>
+            <td align="center" colspan="8">
+                <a href="/">[ 메인화면 ]</a>
+            </td>
+        </tr>
+    </table>
+    <hr>
+</body>
+</html>

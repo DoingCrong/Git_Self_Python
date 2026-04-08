@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>menuPage</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>메인메뉴</h2>
+    <p>로그인상태</p>
+    {% if msg %}
+    <p>{{id}}</p>
+    {% endif %}
+    <hr>
+        <form action="/menu" method="post">
+            <table align="center" border="1">
+                <tr>
+                    <th colspan="2" align="center">
+                        1. 회원가입
+                    </th>
+                </tr>
+
+                <tr>
+                    <th colspan="2" align="center">
+                        2. 로그인
+                    </th>
+                </tr>
+
+                <tr>
+                    <th colspan="2" align="center">
+                        3. 전체정보확인
+                    </th>
+                </tr>
+
+                <!-- <tr>
+                    <th colspan="2" align="center">
+                        4. 회원정보수정(작동안함) [로그인후 loginOk페이지에서 작동]
+                    </th>
+                </tr>
+
+                <tr>
+                    <th colspan="2" align="center">
+                        5. 회원정보삭제 (작동안함) [로그인후 loginOk페이지에서 작동]
+                    </th>
+                </tr> -->
+
+                <tr>
+                    <th>입력</th>
+                    <td>
+                        <input type="text" name="choice">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="2" align="center">
+                        <input type="submit" name="choice" value="전송">
+                        <input type="reset" value="리셋">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    <hr>
+</body>
+</html>

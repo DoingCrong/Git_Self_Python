@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>updatePage</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>회원정보수정페이지</h2>
+    <hr>
+        <form action="/update" method="post">
+            <table align="center" border="1">
+                <tr>
+                    <th colspan="2" align="center">회원정보수정페이지</th>
+                </tr>
+
+                <tr>
+                    <th>
+                        아이디
+                    </th>
+                    <td>
+                        <input type="text" name="id" readonly value="{{row.id}}">
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>
+                        비밀번호
+                    </th>
+                    <td>
+                        <input type="password" name="password" required value="{{row.password}}">
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>
+                        전화번호
+                    </th>
+                    <td>
+                        <input type="tel" name="phone" required placeholder="-없이" value="{{row.phone}}">
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>
+                        생년월일
+                    </th>
+                    <td>
+                        <input type="text" name="age" placeholder="예시:20990725" required value="{{row.age}}">
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>
+                        주소
+                    </th>
+                    <td>
+                        <input type="text" name="address" placeholder="대한민국" required value="{{row.address}}">
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>
+                        취미
+                    </th>
+                    <td>
+                        <input type="checkbox" name="hobby" value="game">게임&nbsp;
+                        <input type="checkbox" name="hobby" value="music">음악&nbsp;
+                        <input type="checkbox" name="hobby" value="fishing" checked>낚시&nbsp;
+                        <input type="checkbox" name="hobby" value="smoking">흡연&nbsp;
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>
+                        성별
+                    </th>
+                    <td>
+                        <input type="radio" name="sex" value="male">남자&nbsp;
+                        <input type="radio" name="sex" value="female">여자&nbsp;
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>
+                        기타
+                    </th>
+                    <td>
+                        <input type="text" name="etc" required value="{{row.etc}}">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="2" align="center">
+                        <input type="submit" value="전송">
+                        <input type="reset" value="취소">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    <hr>
+</body>
+</html>

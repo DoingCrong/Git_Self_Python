@@ -1,0 +1,145 @@
+:root {
+    --bg-start: #f4efe6;
+    --bg-end: #d9e7f2;
+    --panel: rgba(255, 255, 255, 0.92);
+    --line: #9db3c8;
+    --text: #243447;
+    --accent: #2f6b8a;
+    --accent-dark: #1f4a61;
+    --shadow: 0 18px 40px rgba(36, 52, 71, 0.15);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    padding: 40px 16px 56px;
+    background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+    color: var(--text);
+    font-family: "Segoe UI", "Malgun Gothic", sans-serif;
+    text-align: center;
+}
+
+h1,
+h2 {
+    margin: 0 0 12px;
+    letter-spacing: 0.04em;
+}
+
+hr {
+    width: min(720px, 92%);
+    margin: 20px auto 28px;
+    border: 0;
+    border-top: 1px solid rgba(47, 107, 138, 0.18);
+}
+
+form {
+    margin: 0;
+}
+
+table {
+    width: min(760px, 94%);
+    margin: 0 auto;
+    border-collapse: collapse;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+th,
+td {
+    padding: 14px 16px;
+    border: 1px solid rgba(157, 179, 200, 0.75);
+    word-break: break-word;
+}
+
+th {
+    background: rgba(47, 107, 138, 0.1);
+}
+
+td {
+    background: rgba(255, 255, 255, 0.88);
+}
+
+input[type="text"],
+input[type="password"],
+input[type="tel"] {
+    width: min(100%, 320px);
+    padding: 10px 12px;
+    border: 1px solid #b8c7d6;
+    border-radius: 10px;
+    background: #fff;
+    color: var(--text);
+    font: inherit;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="tel"]:focus {
+    outline: 2px solid rgba(47, 107, 138, 0.2);
+    border-color: var(--accent);
+}
+
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+    padding: 10px 18px;
+    border: 0;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #fff;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 700;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover {
+    background: var(--accent-dark);
+    transform: translateY(-1px);
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    accent-color: var(--accent);
+}
+
+a {
+    color: var(--accent-dark);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+    body {
+        padding-top: 28px;
+    }
+
+    table,
+    th,
+    td {
+        font-size: 14px;
+    }
+
+    th,
+    td {
+        padding: 10px;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="tel"] {
+        width: 100%;
+    }
+}

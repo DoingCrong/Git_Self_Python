@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>selectAllPage</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>회원전체정보조회</h2>
+    <hr>
+        <table align="center" border="1">
+            <tr>
+                <th colspan="8" align="center">
+                    전체회원정보
+                </th>
+            </tr>
+
+            <tr>
+                <th>아이디</th>
+                <th>비밀번호</th>
+                <th>전화번호</th>
+                <th>생년원일</th>
+                <th>주소</th>
+                <th>취미</th>
+                <th>성별</th>
+                <th>기타</th>
+            </tr>
+            {% for row in rows %}
+            <tr>
+                <td>{{row.id}}</td>
+                <td>{{row.password}}</td>
+                <td>{{row.phone}}</td>
+                <td>{{row.age}}</td>
+                <td>{{row.address}}</td>
+                <td>{{row.hobby}}</td>
+                <td>{{row.sex}}</td>
+                <td>{{row.etc}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    <hr>
+    <a href="/"> [ 메인메뉴로 ] </a>
+</body>
+</html>
