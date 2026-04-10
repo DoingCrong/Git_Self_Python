@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}매출 분석 프로그램{% endblock %}</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; background: #f5f7fb; }
+        .wrap { max-width: 1100px; margin: auto; }
+        .card { background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        .menu a {
+            display: inline-block; text-decoration: none; color: white;
+            background: #2d6cdf; padding: 10px 14px; border-radius: 8px; margin-right: 8px; margin-bottom: 8px;
+        }
+        .menu a:hover { background: #1f54b5; }
+        table { width: 100%; border-collapse: collapse; background: white; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: center; }
+        th { background: #edf3ff; }
+        img { max-width: 100%; border: 1px solid #ddd; padding: 8px; border-radius: 10px; background: white; }
+        .filter-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+        .filter-grid label { display: block; font-weight: bold; margin-bottom: 6px; }
+        .filter-grid select, .filter-grid button { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc; }
+        .filter-grid button { background: #28a745; color: white; border: none; margin-top: 24px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="card">
+            <h1>매출 분석 프로그램</h1>
+            <div class="menu">
+                <a href="/">홈</a>
+                <a href="/yearly">연도별 매출</a>
+                <a href="/monthly">월별 매출</a>
+                <a href="/region">지역별 매출</a>
+                <a href="/product">제품별 수익성</a>
+            </div>
+        </div>
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>{{ title }}</h2>
+    <p>{{ description }}</p>
+</div>
+
+<div class="card">
+    <h2>차트</h2>
+    <!-- img src :  이 태그는 그림파일을 화면 출력하고자 할 때 사용하는 명령어
+    사용법 : img src="파일 경로/파일이름" alt=""> alt="" 반드시 서술해야 함. HTML5 규격 -->
+    <img src="{{ url_for('static', filename=chart_file) }}" alt="차트">
+</div>
+
+<div class="card">
+    <h2>분석 표</h2>
+    <table>
+        <thead>
+            <tr>
+                {% for col in columns %}
+                <th>{{ col }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in tables %}
+            <tr>
+                {% for col in columns %}
+                <td>{{ row[col] }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

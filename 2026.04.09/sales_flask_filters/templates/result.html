@@ -1,0 +1,79 @@
+
+{% extends "base.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+<div class="card">
+    <h2>{{ title }}</h2>
+    <p>{{ description }}</p>
+</div>
+
+<div class="card">
+    <h3>검색 조건</h3>
+    <form method="get" action="
+    {% if current_menu == 'yearly' %}/yearly
+    {% elif current_menu == 'monthly' %}/monthly
+    {% elif current_menu == 'region' %}/region
+    {% elif current_menu == 'product' %}/product
+    {% endif %}
+    ">
+        <div class="filter-grid">
+            <div>
+                <label for="year">연도</label>
+                <select name="year" id="year">
+                    <option value="">전체</option>
+                    {% for y in years %}
+                    <option value="{{ y }}" {% if selected_year|string == y|string %}selected{% endif %}>{{ y }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div>
+                <label for="region">지역</label>
+                <select name="region" id="region">
+                    <option value="">전체</option>
+                    {% for r in regions %}
+                    <option value="{{ r }}" {% if selected_region == r %}selected{% endif %}>{{ r }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div>
+                <label for="product_line">제품군</label>
+                <select name="product_line" id="product_line">
+                    <option value="">전체</option>
+                    {% for p in products %}
+                    <option value="{{ p }}" {% if selected_product == p %}selected{% endif %}>{{ p }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div>
+                <button type="submit">조회</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="card">
+    <h3>차트</h3>
+    <img src="{{ url_for('static', filename=chart) }}" alt="차트">
+</div>
+
+<div class="card">
+    <h3>분석 표</h3>
+    <table>
+        <tr>
+            {% for col in columns %}
+            <th>{{ col }}</th>
+            {% endfor %}
+        </tr>
+        {% for row in tables %}
+        <tr>
+            {% for col in columns %}
+            <td>{{ row[col] }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

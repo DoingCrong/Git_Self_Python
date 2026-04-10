@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}매출 분석 프로그램{% endblock %}</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; background: #f6f8fb; }
+        .wrap { max-width: 1100px; margin: auto; }
+        h1, h2 { color: #222; }
+        .menu a {
+            display: inline-block;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            padding: 10px 16px;
+            text-decoration: none;
+            background: #2d6cdf;
+            color: white;
+            border-radius: 8px;
+        }
+        .menu a:hover { background: #1f54b5; }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+        th, td {
+            border: 1px solid #dcdcdc;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background: #edf3ff;
+        }
+        img {
+            max-width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background: white;
+            padding: 8px;
+        }
+        .note {
+            background: #fff8e6;
+            border-left: 5px solid #f0b429;
+            padding: 12px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="card">
+            <h1>Flask + Pandas + NumPy 매출 분석</h1>
+            <div class="menu">
+                <a href="/">홈</a> 
+                <a href="/yearly">연도별 매출</a>  <a href="{{redirect(url_for('chart'))}}">연도별 매출</a> 
+                <a href="/region">지역별 매출</a>
+                <a href="/product">제품별 수익성</a>
+            </div>
+        </div>
+
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
