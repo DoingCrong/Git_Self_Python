@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Chart.js</title>
+
+    <style>
+        #chartjs {
+            width: 600px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="chartjs"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        const ctx = document.getElementById("chartjs");
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['1월', '2월', '3월', '4월'],
+                datasets: [{
+                    label: '월별 매출',
+                    data: [50, 70, 66, 90],
+                    borderColor: 'blue',
+                    borderWidth: 2,
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+
+                plugins: {
+                    title: {
+                        display: true,
+                        text: '월별 매출 그래프',
+                        color: 'blue',
+                        font: {
+                            size: 20   
+                        }
+                    }
+                },
+
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: '매출액'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: '월'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
