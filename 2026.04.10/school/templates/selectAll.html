@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}학생 성적 자료{% endblock %}
+
+{% block content %}
+<h2>학생 전체 자료</h2>
+<hr>
+<table border="1" align="center">
+    <tr>
+        <th colspan="8">
+            학생전체조회
+        </th>
+    </tr>
+
+    <tr>
+        <th>번호</th>
+        <th>이름</th>
+        <th>국어</th>
+        <th>영어</th>
+        <th>수학</th>
+        <th>총점</th>
+        <th>평균</th>
+        <th>학점</th>
+    </tr>
+
+    {% for row in rows %}
+    <tr>
+        <td>{{row.id}}</td>
+        <td>{{row.name}}</td>
+        <td>{{row.kor}}</td>
+        <td>{{row.eng}}</td>
+        <td>{{row.math}}</td>
+        <td>{{row.total}}</td>
+        <td>{{row.average}}</td>
+        <td>{{row.grade}}</td>
+    </tr>
+    {% endfor %}
+</table>
+<hr>
+{% endblock %}

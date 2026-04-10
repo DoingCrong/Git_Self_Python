@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}성적기입Ok{% endblock %}
+
+{% block content %}
+<h2>성적기입 완료</h2>
+<hr>
+<table border="1" align="center">
+    <tr>
+        <th colspan="8">
+            학생성적Ok
+        </th>
+    </tr>
+
+    <tr>
+        <th>번호</th>
+        <th>이름</th>
+        <th>국어</th>
+        <th>영어</th>
+        <th>수학</th>
+        <th>총점</th>
+        <th>평균</th>
+        <th>학점</th>
+    </tr>
+
+    <tr>
+        <td>{{row.id}}</td>
+        <td>{{row.name}}</td>
+        <td>{{row.kor}}</td>
+        <td>{{row.eng}}</td>
+        <td>{{row.math}}</td>
+        <td>{{row.total}}</td>
+        <td>{{row.average}}</td>
+        <td>{{row.grade}}</td>
+    </tr>
+</table>
+<hr>
+{% endblock %}

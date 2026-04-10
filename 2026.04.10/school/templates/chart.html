@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}그래프{% endblock %}
+
+{% block content %}
+<h2>학생별 평균 그래프</h2>
+
+<canvas id="student"></canvas>
+
+<script>
+    const name = {{ name|tojson }};
+    const avg = {{ avg|tojson }};
+
+    const ctx = document.getElementById("student");
+
+    new Chart(ctx,{
+        type:"bar",
+        data:{
+            labels:name,
+            datasets:[{
+                label:"학생성적평균",
+                data:avg,
+                borderWidth:1
+            }]
+        },
+        options:{
+            //responsive:true
+            plugins:{
+                title:{
+                    display:true,
+                    text:"학생평균성적차트",
+                    font:{
+                        size:20
+                    }
+                }
+            }
+        },
+        scales:{
+            y:{
+                beginAtZero:true,
+                title:{
+                    display:true,
+                    text:"평균성적"
+                }
+            },
+            x:{
+                title:{
+                    display:true,
+                    text:"학생이름"
+                }
+            }
+        }
+    });
+
+
+</script>
+{% endblock %}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}학생 성적 프로그램{% endblock %}</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="head">
+        <h2>학생 성적 프로그램</h2>
+
+        <div class="menu">
+            <a href="{{url_for('input')}}">입력화면</a>
+            <a href="{{url_for('selectAll')}}">전체자료</a>
+            <a href="{{url_for('chart')}}">차트보기</a>
+        </div>
+        <hr>
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>
