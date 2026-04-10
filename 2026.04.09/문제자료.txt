@@ -1,0 +1,71 @@
+|필드명                 | 한글      | 설명                      |
+| ---------------       | -----      | ----------------------- |
+| date                  | 날짜       | 매출이 발생한 날짜              |
+| year                  | 연도       | 해당 데이터의 연도              |
+| month               | 월         | 해당 데이터의 월               |
+| quarter              | 분기       | 1~4분기 (예: 1분기, 2분기)     |
+| region               | 지역       | 매출이 발생한 지역              |
+| product_line       | 제품군     | 제품 또는 서비스 종류            |
+| units_sold          | 판매수량  | 판매된 개수                  |
+| unit_price          | 단가        | 제품 1개의 가격               |
+| discount_rate      | 할인율     | 할인 적용 비율 (예: 0.1 = 10%) |
+| marketing_spend | 마케팅비  | 광고/홍보에 사용된 비용           |
+| revenue         | 매출액        | 총 매출 금액                 |
+
+
+메뉴
+홈 / 연도별 매출 /지역별 매출 / 제품별 수익성
+
+매출 = 판매수량 * 단가 * (1-할인율)
+제품별 수익성 : 매출액 - 마케팅비
+연도별 매출 : 해마다 매출이 얼마나 증가했는지 확인
+지역별 매출 : 어느 지역의 매출이 높은지 확인
+제품 수익성 : 어떤 제품의 수익성이 좋은지 확인
+
+
+필요한 import
+from flask import Flask, render_template
+import pandas as pd
+import numpy as np
+import matplotlib
+
+차트를 작성하기 위한 
+matplotlib.use("Agg") #차트를 플라스크 서버에서 파일로 저장 가능 하도록 해주는 라이브러리
+import matplotlib.pyplot as plt
+from pathlib import Path #경로 지정을 좀더 편하게 사용할 수 있도록 해주는 라이브러리
+
+# 현재 파일이 있는 폴더 기준 경로
+BASE_DIR = Path(__file__).resolve().parent
+CSV_PATH = BASE_DIR / "sales.csv"
+STATIC_DIR = BASE_DIR / "static"
+
+df = pd.read_csv(CSV_PATH) #Path 라이브러리를 이용하여 파일 위치를 미리 지정후 경로 파일변수 대입
+
+
+
+1. 제품별 수익(묶음세로 막대) -bar
+차트 제목 : 제품별 영업이익
+세로축제품 : 영업이익
+가로축 제목 : 제품
+
+2. 지역별 매출(묶음세로 막대) -bar
+차트 제목 : 지역별 총매출액
+세로축 제목 : 매출
+가로축 제목 : 지역
+
+3. 연도별 매출
+차트 제목 : 연도별 총매출(꺽은 선 차트) -plot
+세로축 제목 : 매출
+가로축 제목 : 연도
+
+
+
+    plt.figure(figsize=(10, 5)) #차트를 만들 도화지 크기 지정 가로 10, 세로 5인치 생성
+    plt.bar(x, y) #차트 종류 plt.plot(x,y) 
+    plt.title(title) #차트 제목
+    plt.xlabel(xlabel) #x축 제목
+    plt.ylabel(ylabel) #y축 제목
+    plt.xticks(rotation=20) # x축 값 회전율
+    plt.tight_layout() #자동 여백 조정
+    plt.savefig(STATIC_DIR / filename) #matplotlib.use("Agg") 라이브러리를 이용하여 그림 파일로 저장 가능하도록 해줌. 저장경로는 static폴더안에 저장
+    plt.close()
