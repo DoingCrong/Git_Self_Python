@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}판매 입력{% endblock %}
+
+{% block content %}
+<h3>판매 자료 입력</h3>
+
+<p>
+상품명은 <b>키보드, 마우스, 스캐너, 모니터, 본체</b> 중 하나만 입력하세요.<br>
+종료하려면 상품명에 <b>q</b> 입력.
+</p>
+
+<form method="post" >
+    <div>
+        상품명 : <input type="text" name="product" required>
+    </div>
+    <div>
+        수량 : <input type="number" name="qty">
+    </div>
+    <div>
+        단가 : <input type="number" name="price">
+    </div>
+    <div>
+        <button type="submit">저장</button>
+    </div>
+</form>
+
+{% if message %}
+    <p class="msg">{{ message }}</p>
+{% endif %}
+
+<h3>입력된 자료</h3>
+<table>
+    <tr>
+        <th>상품명</th>
+        <th>수량</th>
+        <th>단가</th>
+        <th>판매금액</th>
+        <th>할인금액</th>
+        <th>실판매액</th>
+    </tr>
+
+    {% for row in sales_list %}
+    <tr>
+        <td>{{ row.product }}</td>
+        <td>{{ row.qty }}</td>
+        <td>{{ row.price }}</td>
+        <td>{{ row.sale_amount }}</td>
+        <td>{{ row.discount }}</td>
+        <td>{{ row.real_amount }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

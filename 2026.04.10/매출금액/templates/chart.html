@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}상품별 평균 판매금액 차트{% endblock %}
+
+{% block content %}
+<h3>상품명별 총 판매금액 평균 차트</h3>
+
+<p>기준 : 같은 상품으로 여러 번 입력된 판매금액의 평균</p>
+
+<canvas id="myChart"></canvas>
+
+<script>
+    const labels = {{ labels | tojson }};
+    const avgValues = {{ avg_values | tojson }};
+
+    const ctx = document.getElementById("myChart");
+
+    new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels: labels,
+            datasets: [{
+                label: "상품별 평균 판매금액",
+                data: avgValues,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                title: {
+                    display: true,
+                    text: "상품명별 평균 판매금액 차트",
+                    font: {
+                        size: 20
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: "평균 판매금액"
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: "상품명"
+                    }
+                }
+            }
+        }
+    });
+</script>
+
+<h3>전체 입력 내역</h3>
+<table>
+    <tr>
+        <th>상품명</th>
+        <th>수량</th>
+        <th>단가</th>
+        <th>판매금액</th>
+        <th>할인금액</th>
+        <th>실판매액</th>
+    </tr>
+
+    {% for row in sales_list %}
+    <tr>
+        <td>{{ row.product }}</td>
+        <td>{{ row.qty }}</td>
+        <td>{{ row.price }}</td>
+        <td>{{ row.sale_amount }}</td>
+        <td>{{ row.discount }}</td>
+        <td>{{ row.real_amount }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

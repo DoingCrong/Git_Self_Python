@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>resultPage</title>
+</head>
+<body>
+    <h2>판매매출결과</h2>
+    <hr>
+    <p>상품명 : {{product}}</p>
+    <p>수량 : {{count}}개</p>
+    <p>단가 : {{cost}}원</p>
+    <p>판매액 : {{price}}원</p>
+    <p>할인율 : {{sale}}%</p>
+    <p>실제판매액 : {{sales_price}}원</p>
+    <hr>
+
+    <canvas id="chart1"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>//script에서 끝날때는 반드시 세미콜론(;)
+        const ctx = document.getElementById("chart1");
+
+        new Chart(ctx,{
+            type:"line",
+            data:{
+                labels:[],
+                datasets:[{
+                    label:["상품명","수량","단가","판매액","할인율","실제판매액"],
+                    data:[{{product}},{{count}},{{cost}},{{price}},{{sale}},{{sales_price}}],
+                    borderWidth:1
+                }]
+            },
+            Options:{
+                //브라우저크기에 맞추어서 출력
+                reponsive:true,
+                Plugins:{
+                    title:{
+                        //제목출력
+                        display:true,
+                        Text : "매출차트",
+                        font:{
+                            size:20
+                        }
+                    }
+                }
+            },
+            scales:{
+                y:{
+                    beginAtZero:true,
+                    title:{
+                        display:true,
+                        text:"일단가격"
+                    }
+                },
+                x:{
+                    title:{
+                        display:true,
+                        text:"상품판매액및할인률"
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
