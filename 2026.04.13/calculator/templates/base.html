@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}계산기 프로그램{% endblock %}</title> <!-- 수정: 깨진 제목 복구 -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> <!-- 수정: CSS 연결 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="app-body"> <!-- 수정: 공통 스타일 클래스 추가 -->
+<!-- url_for('...') 함수를 호출! 주소를 직접 쓰는 것이 아님 -->
+    <div class="page-shell"> <!-- 수정: 공통 레이아웃 래퍼 추가 -->
+        <nav class="top-nav"> <!-- 수정: 메뉴 스타일 클래스 추가 -->
+            <a class="nav-link" href="{{url_for('index')}}">계산 입력</a> <!-- 수정: 깨진 글자 복구 및 클래스 추가 -->
+            <a class="nav-link" href="{{url_for('history')}}">계산 내역</a> <!-- 수정: 깨진 글자 복구 및 클래스 추가 -->
+            <a class="nav-link" href="{{url_for('avg_chart')}}">ID별 평균차트</a> <!-- 수정: 깨진 글자 복구 및 클래스 추가 -->
+        </nav>
+        <hr class="divider"> <!-- 수정: 구분선 스타일 클래스 추가 -->
+        <main class="content-area"> <!-- 수정: 본문 레이아웃 클래스 추가 -->
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+</body>
+</html>

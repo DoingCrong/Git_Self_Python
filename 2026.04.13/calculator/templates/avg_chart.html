@@ -1,0 +1,53 @@
+{% extends "base.html" %} <!-- 수정: 부모 템플릿 유지 -->
+
+{% block title %}ID별 평균{% endblock %} <!-- 수정: 깨진 제목 복구 -->
+
+{% block content %} <!-- 수정: 본문 시작 -->
+
+<div class="chart-card"> <!-- 수정: 차트 래퍼 추가 -->
+<canvas id="avgchart" class="chart-canvas"></canvas> <!-- 수정: 차트 스타일 클래스 추가 -->
+</div>
+
+<script>
+    const ctx = document.getElementById('avgchart');
+    const labels = {{labels|tojson}};
+    const values = {{values|tojson}};
+
+    new Chart(ctx,{
+        type : 'bar',
+        data :{
+            labels : labels,
+            datasets : [{
+                label : 'ID별 평균값', // 수정: 깨진 글자 복구
+                data: values,
+                borderWidth :1
+            }]
+        },
+        options:{ // 수정: Chart 옵션 키 정리
+            responsive:true,
+            plugins:{
+                title:{
+                    display : true,
+                    text : 'ID별 평균 차트' // 수정: 깨진 글자 복구
+                }
+            },
+            scales:{
+                y:{
+                    beginAtZero : true, // 수정: 옵션명 복구
+                    title:{
+                        display:true,
+                        text : '평균값' // 수정: 깨진 글자 복구
+                    }
+                },
+                x:{
+                    title:{
+                        display:true,
+                        text:"ID"
+                    }
+                }
+            }
+        }
+    });
+</script>
+
+{% endblock %}

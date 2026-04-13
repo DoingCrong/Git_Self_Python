@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}사칙연산 입력{% endblock %} <!-- 수정: 깨진 제목 복구 -->
+
+{% block content %}
+<form action="{{url_for('index')}}" method="post" class="calc-form"> <!-- 수정: 클래스 추가 -->
+<!-- <form action="/index"></form> /index : index함수 주소 호출 -->
+    <label for="" class="field-label">숫자 1 : </label><input class="field-input" type="number" name="num1" required> <!-- 수정: 글자 복구 및 클래스 추가 -->
+    <label for="" class="field-label">숫자 2 : </label><input class="field-input" type="number" name="num2" required> <!-- 수정: 글자 복구 및 클래스 추가 -->
+    <input class="submit-button" type="submit" value="계산하기"> <!-- 수정: 글자 복구 및 클래스 추가 -->
+</form>
+<table border="1" align="center" class="result_table data-table"> <!-- 수정: 테이블 스타일 클래스 추가 -->
+    <tr>
+        <th>번호(ID)</th> <!-- 수정: 깨진 글자 복구 -->
+        <th>숫자1</th> <!-- 수정: 깨진 글자 복구 -->
+        <th>숫자2</th> <!-- 수정: 깨진 글자 복구 -->
+        <th>합(+)</th> <!-- 수정: 깨진 글자 복구 -->
+        <th>차(-)</th> <!-- 수정: 깨진 글자 복구 -->
+        <th>곱(*)</th> <!-- 수정: 깨진 글자 복구 -->
+        <th>평균(/)</th> <!-- 수정: 깨진 글자 복구 -->
+    </tr>
+{% for row in rows %}
+    <tr>
+        <td>{{row.id}}</td>
+        <td>{{row.num1}}</td>
+        <td>{{row.num2}}</td>
+        <td>{{row.total}}</td>
+        <td>{{row.sub}}</td>
+        <td>{{row.mult}}</td>
+        <td>{{row.avge}}</td>
+    </tr>
+{% endfor %}
+</table>
+
+{% endblock %}

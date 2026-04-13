@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}차트 출력{% endblock %} <!-- 수정: 깨진 제목 복구 -->
+
+{% block content %}
+<p class="result_head chart-summary"> <!-- 수정: 차트 요약 스타일 클래스 추가 -->
+{{num1}} + {{num2}} = {{total}}<br>
+{{num1}} - {{num2}} = {{sub}}<br>
+{{num1}} * {{num2}} = {{mult}}<br>
+{{num1}} / {{num2}} = {{avg}}<br>
+</p>
+
+<div class="chart-card"> <!-- 수정: 차트 래퍼 추가 -->
+<canvas id="mychart" class="chart-canvas"></canvas> <!-- 수정: 차트 스타일 클래스 추가 -->
+</div>
+
+<script>
+    // 수정: 계산 결과 차트 출력
+    const ctx = document.getElementById('mychart');
+    const labels ={{labels|tojson}};
+    const values ={{values|tojson}};
+
+    new Chart(ctx,{
+        type: 'bar',
+        data:{
+            labels:labels,
+            datasets:[{
+                label : "계산 결과", // 수정: 깨진 글자 복구
+                data:values,
+                borderWidth:1
+            }]
+        },
+        options:{ // 수정: Chart 옵션 키 정리
+            responsive:true,
+            scales:{
+                y:{
+                    beginAtZero:true
+                }
+            }
+        }
+    });
+
+</script>
+{% endblock %}
