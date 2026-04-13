@@ -21,20 +21,20 @@
     const values ={{values|tojson}};
 
     new Chart(ctx,{
-        type: 'bar',
-        data:{
-            labels:labels,
-            datasets:[{
-                label : "계산 결과", // 수정: 깨진 글자 복구
-                data:values,
-                borderWidth:1
+        type: 'bar', //차트종류
+        data:{ //index함수에서 넘어온 값
+            labels:labels, //x좌표 데이터
+            datasets:[{ //y좌표 데이터들
+                label : "계산 결과", // 차트 제목
+                data:values, //y좌표 데이터들
+                borderWidth:1 //굵기
             }]
         },
         options:{ // 수정: Chart 옵션 키 정리
-            responsive:true,
+            responsive:true, //페이지 크기에 따라 차트크기 자동 조절
             scales:{
                 y:{
-                    beginAtZero:true
+                    beginAtZero:true //y값이 0부터 시작
                 }
             }
         }
