@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}지역별 그래프{% endblock %}
+
+{% block content %}
+<h2>지역별 월별 매매지수 추이</h2>
+<form action="{{url_for('monthly')}}" method="post">
+    지역선택 : <select name="select" id="">
+        {% for i in y %}
+        <option value="{{i}}">{{i}}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="보기">
+</form>
+
+<!-- <canvas id="total_chart"></canvas>
+
+<script>
+    const ctx = document.getElementById('total_chart');
+    const x = {{select|tojson}};
+    const y = {{y|tojson}};
+
+    new Chart(ctx,{
+        type:'line',
+        data:{
+            labels:x,
+            datasets:[{
+                label:"{{select}} 매매지수",
+                data:y,
+                borderWidth:1
+            }]
+        },
+        options:{
+            responsive:true,
+            scales:{
+                y:{
+                    beginAtZero:true,
+                    title:{
+                        display:true,
+                        text:"매매지수"
+                    }
+                },
+                x:{
+                    title:{
+                        display:true,
+                        text:"기간"
+                    }
+                }
+            }
+        },
+    })
+</script> -->
+
+{% endblock %}

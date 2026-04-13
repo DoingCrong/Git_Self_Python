@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}전체 지역 최신월 매매지수 그래프{% endblock %}
+
+{% block content %}
+
+<h2>전체 지역 최신월 매매지수 그래프</h2>
+<p>{{y}} 기준</p>
+
+<canvas id="total_chart"></canvas>
+
+<script>
+    const ctx = document.getElementById('total_chart');
+    const x = {{x|tojson}};
+    const y = {{y|tojson}};
+
+    new Chart(ctx,{
+        type:'bar',
+        data:{
+            labels:x,
+            datasets:[{
+                label:"2026년 1월 매매지수",
+                data:y,
+                borderWidth:1
+            }]
+        },
+        options:{
+            responsive:true,
+            scales:{
+                y:{
+                    beginAtZero:true,
+                    title:{
+                        display:true,
+                        text:"1월"
+                    }
+                },
+                x:{
+                    title:{
+                        display:true,
+                        text:"지역"
+                    }
+                }
+            }
+        },
+    })
+</script>
+
+{% endblock %}

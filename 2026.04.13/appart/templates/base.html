@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}아파트 홈{% endblock %}</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <a href="{{url_for('index')}}">홈</a>
+    <a href="{{url_for('total')}}">전체 그래프</a>
+    <a href="{{url_for('monthly')}}">지역별 그래프</a>
+    <hr>
+    {% block content %}{% endblock %}
+</body>
+</html>
