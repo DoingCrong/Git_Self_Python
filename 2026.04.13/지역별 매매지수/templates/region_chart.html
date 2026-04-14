@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}지역별 그래프{% endblock %}
+
+{% block content %}
+<h2>지역별 월별 매매지수 추이</h2>
+
+<form method="post" action="{{ url_for('region_chart') }}">
+    <label>지역 선택 :</label>
+    <select name="region">
+        {% for region in region_list %}
+        <option value="{{ region }}" {% if region == selected_region %}selected{% endif %}>
+            {{ region }}
+        </option>
+        {% endfor %}
+    </select>
+    <button type="submit">보기</button>
+</form>
+
+<div class="chart-box">
+    <h3>{{ selected_region }} 월별 추이</h3>
+    <canvas id="regionChart"></canvas>
+</div>
+
+<script>
+    const labels = {{ labels | tojson }};
+    const values = {{ values | tojson }};
+
+    const ctx = document.getElementById("regionChart").getContext("2d");
+
+    new Chart(ctx, {
+        type: "line",
+        data: {
+            labels: labels,
+            datasets: [{
+                label: "{{ selected_region }} 매매지수",
+                data: values,
+                fill: false,
+                tension: 0.2,
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: false
+                }
+            }
+        }
+    });
+</script>
+{% endblock %}

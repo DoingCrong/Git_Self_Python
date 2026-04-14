@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chartPage</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    @type {import('chart.js')}
+    <canvas id="scoreChart"></canvas>
+
+ <script>
+    
+        const names = {{names|tojson}};
+        const totals = {{totals|tojson}};
+        const ctx = document.getElementById("scoreChart");
+
+        new Chart(ctx,{
+            type:"bar",
+            data:{
+                labels:names,
+                datasets:[
+                {
+                    label : "이름별 총점",
+                    data:totals,
+                    borderWidth : 1
+                }
+                ]
+            },
+            Options:{
+                responsive : true,
+                plugins:{
+                    title:{
+                        display : true,
+                        text : "이름별 총점 차트"
+                    }
+                },
+                scales:{
+                    y:{
+                        beginAtZero:true,
+                        title:{
+                            display:true,
+                            text : "총점"
+                        }
+                    },
+                    x:{
+                        title:{
+                            display:true,
+                            text:"이름"
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

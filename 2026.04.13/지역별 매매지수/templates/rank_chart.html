@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}최신월 순위 그래프{% endblock %}
+
+{% block content %}
+<h2>최신월 기준 상위 10개 지역</h2>
+<p><strong>{{ latest_month }}</strong> 기준</p>
+
+<div class="chart-box">
+    <canvas id="rankChart"></canvas>
+</div>
+
+<script>
+    const labels = {{ labels | tojson }};
+    const values = {{ values | tojson }};
+
+    const ctx = document.getElementById("rankChart").getContext("2d");
+
+    new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels: labels,
+            datasets: [{
+                label: "{{ latest_month }} 상위 10개 지역",
+                data: values,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            indexAxis: "y",
+            responsive: true,
+            scales: {
+                x: {
+                    beginAtZero: false
+                }
+            }
+        }
+    });
+</script>
+{% endblock %}
