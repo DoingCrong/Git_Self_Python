@@ -1,5 +1,9 @@
 from collections import Counter
 import re
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
+from konlpy.tag import Okt
+
 
 text = """
 파이썬은 다른 언어보다 배우기 쉽고 강력한 프로그래밍 언어입니다.
@@ -14,7 +18,19 @@ text = text.lower()
 text = re.sub(r'[^가-힣a-z\s]','',text)#한글 가-힣, a-z
 #re.sub(패턴, 바꿀값, 원본문자열)
 
+#3. 단어 분리(구버젼?) 잘안쪼개짐
 words = text.split()
+
+# 3-A. wordcloud 라이브러리 설치
+#pip install konlpy
+
+# 3-B. wordcloud import 시키기
+#from konlpy.tag import Okt
+
+#3-2. 단어 분리 <-- 이걸로 쪼개라
+okt = Okt()
+words = okt.nouns(text)
+
 
 #4. 불용어 제거 (의미 없는 단어 제거)
 stopwords = ['은','는','이','가','에서','등','매우','을']
@@ -32,3 +48,14 @@ print("단어 빈도수 :")
 for word, count in word_count.most_common():
     #.most_common() : 빈도수가 많이 나온 순서대로 하나씩 꺼냄
     print(word, ":" , count)
+
+# 7. 시각화 하기
+wc = WordCloud(font_path = "C:/windows/Fonts/malgun.ttf", # 글꼴 패치 반드시 수행해야 함
+               background_color="white",
+               width=800,
+               height=400)
+wc.generate_from_frequencies(word_count) # 워드 클라우드에서 단어별 빈도수를 이용하여 생성
+
+plt.imshow(wc)
+plt.axis("off") # 축 제거
+plt.show()

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>indexPage</title>
+</head>
+<body>
+    <h2>네이버 뉴스 API 검색</h2>
+    <hr>
+    <form action="{{ url_for('index') }}" method="post">
+        <input type="text" name="naver" placeholder="검색어를 입력하세요" required>
+        <input type="submit" value="전송">
+    </form>
+    <hr>
+    <form action="{{ url_for('wordcloud') }}" method="post">
+        <input type="text" value="{{ naver }}" readonly>
+        <input type="submit" value="plt되라">
+    </form>
+    <hr>
+    <h3>{{ naver }} 검색 결과</h3>
+        {% for news in news %}
+            <p>{{ news.title }}</p>
+            <a href="{{news.link}}">{{news.link}}</a>
+        {% endfor %}
+</body>
+</html>
