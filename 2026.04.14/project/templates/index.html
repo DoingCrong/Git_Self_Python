@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>OCR 예제</title>
+</head>
+<body>
+    <h2>이미지 업로드 OCR</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="submit" value="업로드">
+    </form>
+
+    <hr>
+
+    {% if image_url %}
+        <h3>업로드한 이미지</h3>
+        <img src="{{ image_url }}" width="300">
+    {% endif %}
+
+    <h3>OCR 결과</h3>
+    {% for r in result %}
+        <p>{{ r }}</p>
+    {% endfor %}
+</body>
+</html>

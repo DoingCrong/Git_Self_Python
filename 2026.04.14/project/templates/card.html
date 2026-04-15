@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>신용카드 영수증 OCR</title>
+</head>
+<body>
+    <h2>신용카드 영수증 읽기</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+        <p>
+            <input type="file" name="file">
+            <input type="submit" value="업로드">
+        </p>
+    </form>
+
+    <hr>
+
+    {% if message %}
+        <p><b>{{ message }}</b></p>
+    {% endif %}
+
+    {% if image_url %}
+        <h3>업로드한 이미지</h3>
+        <img src="{{ image_url }}" width="300">
+        <hr>
+    {% endif %}
+
+    <h3>추출 결과</h3>
+    <p>가맹점명 : {{ data.store_name }}</p>
+    <p>승인일시 : {{ data.pay_date }}</p>
+    <p>카드번호 : {{ data.card_number }}</p>
+    <p>승인번호 : {{ data.approve_number }}</p>
+    <p>금액 : {{ data.amount }}</p>
+
+    <hr>
+
+    <h3>전체 OCR 결과</h3>
+    {% if ocr_texts %}
+        {% for text in ocr_texts %}
+            <p>{{ text }}</p>
+        {% endfor %}
+    {% else %}
+        <p>아직 업로드된 파일이 없습니다.</p>
+    {% endif %}
+</body>
+</html>

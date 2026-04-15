@@ -1,0 +1,34 @@
+from collections import Counter
+import re
+
+text = """
+파이썬은 다른 언어보다 배우기 쉽고 강력한 프로그래밍 언어입니다.
+파이썬은 데이터분석, 인공지능, 웹 개발 등 다양한 분야에서 사용하는 언어입니다.
+우리는 이제까지 파이썬을 이용하여 분석, 계산, 예측, 차트등 다양한 문법을 배우고 있습니다.
+"""
+
+#1. 문자들을 소문자로 변환
+text = text.lower()
+
+#2. 특수문자 제거
+text = re.sub(r'[^가-힣a-z\s]','',text)#한글 가-힣, a-z
+#re.sub(패턴, 바꿀값, 원본문자열)
+
+words = text.split()
+
+#4. 불용어 제거 (의미 없는 단어 제거)
+stopwords = ['은','는','이','가','에서','등','매우','을']
+words = [word for word in words if word not in stopwords]
+#값 for 변수 in 리스트 if 조건 --> 리스트 컴프리헨션문법
+#1. words에서 하나씩 꺼내옴
+#2. word not in stopwords 조건 검사
+#3. 조건이 참이면 리스트에 추가
+
+#5. 단어 빈도수 계산
+word_count = Counter(words)
+
+#6. 출력
+print("단어 빈도수 :")
+for word, count in word_count.most_common():
+    #.most_common() : 빈도수가 많이 나온 순서대로 하나씩 꺼냄
+    print(word, ":" , count)
