@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>indexPage</title>
+</head>
+<body>
+    <h1>네이버 뉴스 텍스트 마이닝 기반 분석 예측</h1>
+    <div>
+        <form action="{{ url_for('index') }}" method="post">
+            검색어 : <input type="text" name="naver" placeholder="검색어 입력">&nbsp;
+            
+            <br>
+            긍정 : 
+            <input type="checkbox" name="positive" value="상승">상승&nbsp;
+            <input type="checkbox" name="positive" value="기대">기대&nbsp;
+            <input type="checkbox" name="positive" value="호재">호재&nbsp;
+            <input type="checkbox" name="positive" value="개선">개선&nbsp;
+            <input type="checkbox" name="positive" value="최대">최대&nbsp;
+            <input type="checkbox" name="positive" value="판매량">판매량&nbsp;
+            <input type="checkbox" name="positive" value="성장">성장&nbsp;
+            <br>
+            부정 : <select name="negative" id="">
+                <option>--선택--</option>
+                <option value="하락">하락</option>
+                <option value="악재">악재</option>
+                <option value="적자">적자</option>
+                <option value="감소">감소</option>
+                <option value="위기">위기</option>
+                <option value="손실">손실</option>
+                <option value="부진">부진</option>
+            </select>
+            <br>
+            <!-- 기타 : <textarea name="guiter" id=""></textarea> -->
+            <input type="submit" value="뉴스분석">
+        </form>
+    </div>
+    <hr>
+    <div>
+        <h3>{{ naver }} 검색 결과</h3>
+        {% for news in news %}
+        <p><a href="{{ news.link }}" target="_blank">{{ news.title }}</a></p><br>
+        {% endfor %}
+    </div>
+    <hr>
+    <div>
+        <h3>{{ naver }} 예측 결과</h3>
+        {% if use %}
+        <p>예측 : {{ use.result }}</p> <br>
+        <p>점수 : {{ use.score }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
