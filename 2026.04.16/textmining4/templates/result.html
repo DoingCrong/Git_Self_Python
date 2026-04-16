@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>resultPage</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <div>
+    <h2>{{ df }}</h2>
+    </div>
+    <canvas id="HMM"></canvas>
+
+    <script>
+        const ctx = document.getElementById("HMM");
+        const x = {{ x|tojson }};
+        const y = {{ y|tojson }};
+
+        new Chart(ctx,{
+            type:'line',
+            data:{
+                labels:x,
+                datasets:[{
+                    label:"HMM 자산총계",
+                    data:y,
+                    borderWidth:1
+                }]
+            },
+            options:{
+                responsive:true,
+                scales:{
+                    y:{
+                        beginAtZero:true,
+                        title:{
+                            display:true,
+                            text:"자산총계"
+                        }
+                    },
+                    x:{
+                        title:{
+                            display:true,
+                            text:"년도"
+                        }
+                    }
+                }
+            },
+        });
+    </script>
+
+<a href="/">메인</a>
+
+</body>
+</html>
