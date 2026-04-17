@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}indexPage{% endblock %}
+
+{% block content %}
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WWXC77DXJW"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-WWXC77DXJW');
+    </script>
+
+<div class="intro-card"> <!-- 추가: 카드 class -->
+    <p class="intro-text"><strong>일단 시작화면은 메인페이지</strong></p> <!-- 추가: 문단 class -->
+</div>
+
+<div class="link-card"> <!-- 추가: 카드 class -->
+    <p class="info-text">base.html과 연동될 수 있게 여기도 만들어둠</p> <!-- 추가: 문단 class -->
+    <a class="action-link" href="/form">Form페이지로 이동</a> <br> <br> <!-- 추가: 링크 class -->
+    <a class="action-link" href="/postman">Postman페이지로 이동</a> <br> <!-- 추가: 링크 class -->
+    <a class="action-link" href="/chart">차트페이지로 이동</a> <br> <!-- 추가: 링크 class -->
+</div>
+{% endblock %}

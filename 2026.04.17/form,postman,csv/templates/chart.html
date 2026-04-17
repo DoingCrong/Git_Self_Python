@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}chartPage{% endblock %}
+
+{% block content %}
+<h2 class="section-title">School 차트</h2> <!-- 추가: 제목 class -->
+    <div class="chart-card"> <!-- 추가: 차트 카드 class -->
+        <canvas id="school" class="chart-canvas"></canvas> <!-- 추가: canvas class -->
+
+        <script>
+            const ctx = document.getElementById("school");
+            const x = {{ x|tojson }};
+            const y = {{ y|tojson }};
+
+            new Chart(ctx,{
+                type:'bar',
+                data:{
+                labels:x,
+                datasets:[{
+                    label:"학생평균",
+                    data:y,
+                    borderWidth:1
+                }]
+            },
+            options:{
+                responsive:true,
+                scales:{
+                    y:{
+                        beginAtZero:true,
+                        title:{
+                            display:true,
+                            text:"평균"
+                        }
+                    },
+                    x:{
+                        title:{
+                            display:true,
+                            text:"이름"
+                        }
+                    }
+                }
+            }
+        });
+        </script>
+    </div>
+{% endblock %}

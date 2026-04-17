@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}postmanPage{% endblock %}
+
+{% block content %}
+<h2 class="section-title">Postman입력</h2> <!-- 추가: 제목 class -->
+<hr class="section-line"> <!-- 추가: 구분선 class -->
+<div class="info-card"> <!-- 추가: 안내 카드 class -->
+    <p class="info-text"><strong>사실 여기는 입력할 것이 따로 없고</strong></p> <!-- 추가: 문단 class -->
+    <p class="info-text"><strong>포스트맨에서 입력 후 send 버튼을 누를 때</strong></p> <!-- 추가: 문단 class -->
+    <p class="info-text"><strong>아래에 회원가입 확인이 나오면 좋겠습니다</strong></p> <!-- 추가: 문단 class -->
+</div>
+<div class="result-card"> <!-- 추가: 결과 영역 class -->
+    <!-- 입력화면과 회원가입 확인을 하나의 화면으로 보여주기 위해 if rows 사용 -->
+    {% if rows %} <!-- rows 데이터가 있을 때만 표시 -->
+    <hr class="section-line"> <!-- 추가: 구분선 class -->
+    <h3 class="sub-title">Form 회원가입 확인</h3> <!-- 추가: 소제목 class -->
+    <table border="1" class="data-table"> <!-- 추가: 테이블 class -->
+        <tr>
+            <th colspan="2"><span class="table-message">{{ rows.name }}님 회원가입 완료</span></th> <!-- 추가: 문장 class -->
+        </tr>
+        <tr>
+            <th>학번</th>
+            <td>{{ rows.student_no }}</td>
+        </tr>
+        <tr>
+            <th>비밀번호</th>
+            <td>{{ rows.password }}</td>
+        </tr>
+        <tr>
+            <th>국어</th>
+            <td>{{ rows.kor }}</td>
+        </tr>
+        <tr>
+            <th>영어</th>
+            <td>{{ rows.eng }}</td>
+        </tr>
+        <tr>
+            <th>수학</th>
+            <td>{{ rows.math }}</td>
+        </tr>
+        <tr>
+            <th>총점</th>
+            <td>{{ rows.total }}</td>
+        </tr>
+        <tr>
+            <th>평균</th>
+            <td>{{ rows.avg }}</td>
+        </tr>
+        <tr>
+            <th>학점</th>
+            <td>{{ rows.grade }}</td>
+        </tr>
+    </table>
+    {% endif %}
+</div>
+
+<div class="bottom-links"> <!-- 추가: 하단 링크 영역 class -->
+    <a class="action-link" href="/">메인</a> <!-- 추가: 링크 class -->
+    <a class="action-link" href="/form">Form입력</a> <!-- 추가: 링크 class -->
+    <a class="action-link" href="/">메인</a> <!-- 추가: 링크 class -->
+</div>
+{% endblock %}

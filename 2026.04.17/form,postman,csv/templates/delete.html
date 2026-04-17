@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}
+deletePage
+{% endblock %}
+
+{% block content %}
+<div class="delete-card"> <!-- 추가: 삭제 카드 class -->
+    {% if row %}
+    <hr class="section-line">
+    <h2 class="section-title">회원 탈퇴</h2>
+    
+    <div class="warning-box"> <!-- 추가: 경고 박스 class -->
+        <strong class="warning-text">주의: 삭제된 데이터는 복구할 수 없습니다.</strong> <!-- 추가: 경고 문구 class -->
+    </div>
+
+    <form action="{{ url_for('delete') }}" method="post" onsubmit="return confirm('정말 탈퇴하시겠습니까?');" class="delete-form"> <!-- 추가: form class -->
+        <table border="1" class="data-table">
+            <tr>
+                <th colspan="2">탈퇴 확인 정보</th>
+            </tr>
+            <tr>
+                <th>학번</th>
+                <td>{{ row.student_no }}</td>
+            </tr>
+            <tr>
+                <th>이름</th>
+                <td>{{ row.name }}</td>
+            </tr>
+            <tr>
+                <th>평균 점수</th>
+                <td>{{ row.avg }}</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="button-row"> <!-- 추가: 버튼 영역 class -->
+                    <input class="danger-button" type="submit" value="회원탈퇴"> &nbsp; <!-- 추가: 버튼 class -->
+                    <a class="action-link" href="/update">취소</a> <!-- 추가: 링크 class -->
+                </td>
+            </tr>
+        </table>
+    </form>
+    {% else %}
+    <p class="info-text">정보를 불러올 수 없습니다.</p> <!-- 추가: 문장 class -->
+    <a class="action-link" href="{{ url_for('login') }}">로그인 페이지로 이동</a> <!-- 추가: 링크 class -->
+    {% endif %}
+</div>
+{% endblock %}

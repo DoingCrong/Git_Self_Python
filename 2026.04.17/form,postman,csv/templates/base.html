@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}indexPage{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> <!-- 추가: CSS 연결 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WWXC77DXJW"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-WWXC77DXJW');
+    </script>
+
+</head>
+<body class="app-body"> <!-- 추가: body class -->
+    <div class="session-bar"> <!-- 추가: 상단 사용자 영역 class -->
+        {% if session.get('user_id') %}
+            <span class="user-info">
+                <strong class="user-name">{{ session.get('user_name') }}</strong><span class="user-status">님 접속 중</span> <!-- 추가: 사용자명/상태 class -->
+            </span>
+                <a class="nav-link logout-link" href="/logout">로그아웃</a>
+            {% else %}
+                <a class="nav-link" href="/login">로그인</a>
+            {% endif %}
+    </div>
+    <div class="page-shell"> <!-- 추가: 공통 래퍼 class -->
+        <h2 class="page-title">Form / Postman / Csv</h2> <!-- 추가: 제목 class -->
+        <hr class="section-line"> <!-- 추가: 구분선 class -->
+        <div class="top-nav"> <!-- 추가: 메뉴 영역 class -->
+            <a class="nav-link" href="/">메인화면</a> <!-- 추가: 링크 class -->
+            <a class="nav-link" href="/form">Form입력</a> <!-- 추가: 링크 class -->
+            <a class="nav-link" href="/postman">Postman(포스트맨에서 보내고 실행하세요)</a> <!-- 추가: 링크 class -->
+            <a class="nav-link" href="/csv">CSV입력</a> <!-- 추가: 링크 class -->
+            <a class="nav-link" href="/chart">차트보기</a> <!-- 추가: 링크 class -->
+        </div>
+
+        <div class="top-nav"> <!-- 추가: 메뉴 영역 class -->
+            <a class="nav-link" href="/selectAll">전체자료확인</a> <!-- 추가: 링크 class -->
+            <a class="nav-link" href="/login">로그인</a> <!-- 추가: 링크 class -->
+        </div>
+        <hr class="section-line"> <!-- 추가: 구분선 class -->
+        <main class="content-area"> <!-- 추가: 본문 class -->
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+</body>
+</html>

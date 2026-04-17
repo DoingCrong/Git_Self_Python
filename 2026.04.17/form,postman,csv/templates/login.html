@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block title %}
+{% if not row %}
+loginPage
+{% endif %}
+{% if row %}
+로그인성공
+{% endif %}
+{% endblock %}
+
+{% block content %}
+{% if not row %}
+<div class="login-card"> <!-- 추가: 로그인 카드 class -->
+    <h2 class="section-title">로그인</h2> <!-- 추가: 제목 class -->
+    <form action="{{ url_for('login') }}" method="post" class="login-form"> <!-- 추가: form class -->
+        <table border="1" class="data-table"> <!-- 추가: 테이블 class -->
+            <tr>
+                <th>
+                    학번(아이디) :
+                </th>
+                <td>
+                    <input type="text" name="student_no" placeholder="아이디 입력" required>
+                </td>
+            </tr>
+
+            <tr>
+                <th>
+                    비밀번호 : 
+                </th>
+                <td>
+                    <input type="password" name="password" placeholder="비밀번호 입력" required>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2" class="button-row"> <!-- 추가: 버튼 영역 class -->
+                    <input class="primary-button" type="submit" value="로그인"> &nbsp;  <!-- 추가: 버튼 class -->
+                    <input class="secondary-button" type="reset" value="취소"> <!-- 추가: 버튼 class -->
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+{% endif %}
+<div class="result-card"> <!-- 추가: 결과 영역 class -->
+    {% if row %}
+    <hr class="section-line"> <!-- 추가: 구분선 class -->
+    <h2 class="section-title">로그인 OK</h2> <!-- 추가: 제목 class -->
+        <table border="1" class="data-table"> <!-- 추가: 테이블 class -->
+            <tr>
+                <th colspan="9">로그인정보</th>
+            </tr>
+            <tr>
+                <th>학번</th>
+                <th>비밀번호</th>
+                <th>이름</th>
+                <th>국어</th>
+                <th>영어</th>
+                <th>수학</th>
+                <th>총점</th>
+                <th>평균</th>
+                <th>학점</th>
+            </tr>
+            <tr>
+                <td>{{ row.student_no }}</td>
+                <td>{{ row.password }}</td>
+                <td>{{ row.name }}</td>
+                <td>{{ row.kor }}</td>
+                <td>{{ row.eng }}</td>
+                <td>{{ row.math }}</td>
+                <td>{{ row.total }}</td>
+                <td>{{ row.avg }}</td>
+                <td>{{ row.grade }}</td>
+            </tr>
+            <tr>
+                <td colspan="9" class="button-row"> <!-- 추가: 링크 영역 class -->
+                    <a class="action-link" href="{{ url_for('logout') }}">로그아웃</a> &nbsp;  <!-- 추가: 링크 class -->
+                    <a class="action-link" href="/update">정보수정</a> &nbsp; <!-- 추가: 링크 class -->
+                    <a class="action-link" href="/delete">회원탈퇴</a> <!-- 추가: 링크 class -->
+                </td>
+            </tr>
+        </table>
+    {% endif %}
+</div>
+
+{% endblock %}

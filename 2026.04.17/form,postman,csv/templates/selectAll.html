@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}selectAllPage{% endblock %}
+
+{% block content %}
+<div class="result-card"> <!-- 추가: 결과 카드 class -->
+    {% if rows %}
+    <hr class="section-line"> <!-- 추가: 구분선 class -->
+    <h2 class="section-title">CSV파일로 회원가입 확인</h2> <!-- 추가: 제목 class -->
+        <table border="1" class="data-table"> <!-- 추가: 테이블 class -->
+            <tr>
+                <th colspan="9"><span class="table-message">전체학생자료</span></th> <!-- 추가: 문장 class -->
+            </tr>
+            <tr>
+                <th>학번</th>
+                <th>비밀번호</th>
+                <th>이름</th>
+                <th>국어</th>
+                <th>영어</th>
+                <th>수학</th>
+                <th>총점</th>
+                <th>평균</th>
+                <th>학점</th>
+            </tr>
+            {% for row in rows %}
+            <tr>
+                <td>{{ row.student_no }}</td>
+                <td>{{ row.password }}</td>
+                <td>{{ row.name }}</td>
+                <td>{{ row.kor }}</td>
+                <td>{{ row.eng }}</td>
+                <td>{{ row.math }}</td>
+                <td>{{ row.total }}</td>
+                <td>{{ row.avg }}</td>
+                <td>{{ row.grade }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+</div>
+{% endblock %}

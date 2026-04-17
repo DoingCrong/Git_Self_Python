@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}csvPage{% endblock %}
+
+{% block content %}
+<div class="upload-card"> <!-- 추가: 업로드 카드 class -->
+    <h2 class="section-title">CSV파일입력</h2> <!-- 추가: 제목 class -->
+    <form action="{{ url_for('csv') }}" method="post" enctype="multipart/form-data" class="upload-form"> <!-- 추가: form class -->
+        <input class="file-input" type="file" name="csv"> <!-- 추가: 파일 input class -->
+        <input class="primary-button" type="submit" value="파일전송"> <!-- 추가: 버튼 class -->
+    </form>
+</div>
+<div class="result-card"> <!-- 추가: 결과 영역 class -->
+    {% if rows %}
+    <hr class="section-line"> <!-- 추가: 구분선 class -->
+    <h2 class="section-title">CSV파일로 회원가입 확인</h2> <!-- 추가: 제목 class -->
+        <table border="1" class="data-table"> <!-- 추가: 테이블 class -->
+            <tr>
+                <th colspan="9"><span class="table-message">CSV파일로 조회결과</span></th> <!-- 추가: 문장 class -->
+            </tr>
+            <tr>
+                <th>학번</th>
+                <th>비밀번호</th>
+                <th>이름</th>
+                <th>국어</th>
+                <th>영어</th>
+                <th>수학</th>
+                <th>총점</th>
+                <th>평균</th>
+                <th>학점</th>
+            </tr>
+            {% for row in rows %}
+            <tr>
+                <td>{{ row.student_no }}</td>
+                <td>{{ row.password }}</td>
+                <td>{{ row.name }}</td>
+                <td>{{ row.kor }}</td>
+                <td>{{ row.eng }}</td>
+                <td>{{ row.math }}</td>
+                <td>{{ row.total }}</td>
+                <td>{{ row.avg }}</td>
+                <td>{{ row.grade }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+</div>
+{% endblock %}

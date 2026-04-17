@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block title %}
+updatePage
+{% endblock %}
+
+{% block content %}
+
+<div class="update-card"> <!-- 추가: 수정 카드 class -->
+{% if row and not update %}
+    <hr class="section-line"> <!-- 추가: 구분선 class -->
+    <h2 class="section-title">업데이트</h2> <!-- 추가: 제목 class -->
+    <form action="{{ url_for('update') }}" method="post" class="update-form"> <!-- 추가: form class -->
+        <table border="1" class="data-table"> <!-- 추가: 테이블 class -->
+            <tr>
+                <th colspan="2">유저정보수정</th>
+            </tr>
+            <tr>
+                <th>학번</th>
+                <td><input type="text" name="student_no" value="{{ row.student_no }}" readonly></td>
+            </tr>
+
+            <tr>
+                <th>비밀번호</th>
+                <td><input type="text" name="password" value="{{ row.password }}"></td>
+            </tr>
+
+            <tr>
+                <th>이름</th>
+                <td><input type="text" name="name" value="{{ row.name }}"></td>
+            </tr>
+
+            <tr>
+                <th>국어</th>
+                <td><input type="text" name="kor" value="{{ row.kor }}"></td>
+            </tr>
+
+            <tr>
+                <th>영어</th>
+                <td><input type="text" name="eng" value="{{ row.eng }}"></td>
+            </tr>
+
+            <tr>
+                <th>수학</th>
+                <td><input type="text" name="math" value="{{ row.math }}"></td>
+            </tr>
+
+            <tr>
+                <th>총점</th>
+                <td><input type="text" name="total" value="{{ row.total }}" readonly></td>
+            </tr>
+
+            <tr>
+                <th>평균</th>
+                <td><input type="text" name="avg" value="{{ row.avg }}" readonly></td>
+            </tr>
+
+            <tr>
+                <th>학점</th>
+                <td><input type="text" name="grade" value="{{ row.grade }}" readonly></td>
+            </tr>
+
+            <tr>
+                <td colspan="2" class="button-row"> <!-- 추가: 버튼 영역 class -->
+                    <input class="primary-button" type="submit" value="수정완료"> &nbsp; <!-- 추가: 버튼 class -->
+                    <input class="secondary-button" type="reset" value="취소"> <!-- 추가: 버튼 class -->
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2" class="button-row"> <!-- 추가: 링크 영역 class -->
+                    <a class="action-link" href="{{ url_for('logout') }}">로그아웃</a> &nbsp;  <!-- 추가: 링크 class -->
+                    <a class="action-link" href="/delete">로그인삭제</a> <!-- 추가: 링크 class -->
+                </td>
+            </tr>
+        </table>
+    </form>
+{% endif %}
+</div>
+
+<div class="result-card"> <!-- 추가: 결과 영역 class -->
+{% if update %}
+    <hr class="section-line"> <!-- 추가: 구분선 class -->
+    <h2 class="section-title">수정완료</h2> <!-- 추가: 제목 class -->
+        <table border="1" class="data-table"> <!-- 추가: 테이블 class -->
+            <tr>
+                <th colspan="9">회원정보수정완료</th>
+            </tr>
+            <tr>
+                <th>학번</th>
+                <th>비밀번호</th>
+                <th>이름</th>
+                <th>국어</th>
+                <th>영어</th>
+                <th>수학</th>
+                <th>총점</th>
+                <th>평균</th>
+                <th>학점</th>
+            </tr>
+            <tr>
+                <td>{{ update.student_no }}</td>
+                <td>{{ update.password }}</td>
+                <td>{{ update.name }}</td>
+                <td>{{ update.kor }}</td>
+                <td>{{ update.eng }}</td>
+                <td>{{ update.math }}</td>
+                <td>{{ update.total }}</td>
+                <td>{{ update.avg }}</td>
+                <td>{{ update.grade }}</td>
+            </tr>
+            <tr>
+                <td colspan="9" class="button-row"> <!-- 추가: 링크 영역 class -->
+                    <a class="action-link" href="{{ url_for('logout') }}">로그아웃</a> &nbsp;  <!-- 추가: 링크 class -->
+                    <a class="action-link" href="/update">정보수정</a> &nbsp; <!-- 추가: 링크 class -->
+                    <a class="action-link" href="/delete">로그인삭제</a> <!-- 추가: 링크 class -->
+                </td>
+            </tr>
+        </table>
+{% endif %}
+</div>
+{% endblock %}
