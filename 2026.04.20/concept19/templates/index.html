@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2WVEDSQMJF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-2WVEDSQMJF');
+</script>
+</head>
+<body>
+{% if not name %}
+  <div>
+    <!-- onsubmit="gtag('event','submit_name_form'); -->
+    <form action="" method="post" onsubmit="gtag('event','submit_name_form');">
+      이름 : <input type="text" name="name"> <br>
+      <input type="submit" value="전송">
+    </form>
+  </div>
+{% endif %}
+<hr>
+{% if name %}
+  <div>
+    <h2>{{name}}님 환영합니다.</h2>
+  </div>
+{% endif %}
+</body>
+</html>

@@ -1,0 +1,21 @@
+Flask프로젝트를 실행파일(exe) 파일 만들기
+설치 : pip install pyinstaller 
+
+app.py만 존재할때
+구문 : pyinstaller --onefile app.pyinstaller
+
+templates폴더 존재할때
+구문 : pyinstaller --onefile --add-data "templates;templates" app.py
+
+templates/static 폴더 존재할때
+구문 : pyinstaller --onefile --add--data "templates;templates"
+--add--data "static;static" app.py
+
+콘솔박스 없이 실행파일
+구문 : pyinstaller --onefile --noconsole --add-data "templates;templates" app.py
+
+자동으로 브라우저 실행
+if __name__ == "__main__":
+    webbrowser.open("http://127.0.0.1:5000")
+    app.run()
+자동 브라우저 실행을 만들때에는 app.run(debug=True)를 생략해야한다.

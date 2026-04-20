@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>indexPage</title>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7183LGRM1Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7183LGRM1Q');
+</script>
+</head>
+<body>
+    <div>
+        <form action="" method="post" onsubmit="gtag('event','submit_name_form');">
+            숫자 1 : <input type="number" name="num1"> <br>
+            숫자 2 : <input type="number" name="num2"> <br>
+            기호 : 
+            <select name="op">
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="*">*</option>
+                <option value="/">/</option>
+            </select>
+
+            <input type="submit" value="전송">
+        </form>
+    </div>
+<hr>
+{% if num1 and op and num2 and result %}
+    <div>
+        <h2>계산결과</h2>
+        <p>{{ num1 }} {{ op }} {{ num2 }} = {{ result }}</p>
+    </div>
+{% endif %}
+</body>
+</html>
