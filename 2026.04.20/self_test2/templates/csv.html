@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}csvPage{% endblock %}
+
+{% block content %}
+
+<div>
+    <h2>CSV파일입력</h2>
+    <form action="{{ url_for('csv') }}" method="post" enctype="multipart/form-data">
+        파일 : <input type="file" name="csv"> <br>
+        지역(구) : <input type="text" name="area" placeholder="마포구"> <br>
+        <input type="submit" value="파일전송"> &nbsp; <input type="reset" value="취소">
+    </form>
+</div>
+
+<hr>
+{% if rows %}
+<div>
+    <table border="1">
+        <tr>
+            {% for row in rows[0].keys() %}
+                <th>{{ row }}</th>
+            {% endfor %}
+        </tr>
+
+        {% for row in rows %}
+        <tr>
+            {% for i in row.values() %}
+                <td>{{ i }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<hr>
+
+<div>
+    <h2>chart-js</h2>
+
+    <canvas id='seoul'></canvas>
+
+    <script>
+        const ctx = document.getElementById("seoul");
+        const x = {{ x|tojson }};
+        const y = {{ y|tojson }};
+
+            new Chart(ctx,{
+                type:'line',
+                data:{
+                labels:x,
+                datasets:[{
+                    label:"[{{ area }}] 증가/감소 그래프",
+                    data:y,
+                    borderWidth:1
+                }]
+            },
+            options:{
+                responsive:true,
+                scales:{
+                    y:{
+                        beginAtZero:true,
+                        title:{
+                            display:true,
+                            text:"{{ area }} 인구"
+                        }
+                    },
+                    x:{
+                        title:{
+                            display:true,
+                            text:"{{ area }} 기간"
+                        }
+                    }
+                }
+            }
+        });
+        </script>
+    </script>
+</div>
+{% endif %}
+
+<hr>
+{% if prediction %}
+    <div>
+        <h3>예측 결과</h3>
+        <p>다음 달 예상 인구(또는 변화값): {{ prediction }}</p>
+    </div>
+{% endif %}
+{% endblock %}

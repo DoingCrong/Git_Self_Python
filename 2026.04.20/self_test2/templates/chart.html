@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}chartPage{% endblock %}
+
+{% block content %}
+<div>
+    <h2>chart-js</h2>
+
+    <canvas id='seoul'></canvas>
+
+    <script>
+        const ctx = document.getElementById("seoul");
+        const x = {{ x|tojson }};
+        const y = {{ y|tojson }};
+
+            new Chart(ctx,{
+                type:'line',
+                data:{
+                labels:x,
+                datasets:[{
+                    label:"서울인구",
+                    data:y,
+                    borderWidth:1
+                }]
+            },
+            options:{
+                responsive:true,
+                scales:{
+                    y:{
+                        beginAtZero:true,
+                        title:{
+                            display:true,
+                            text:"2025년 12월"
+                        }
+                    },
+                    x:{
+                        title:{
+                            display:true,
+                            text:"{{ x }}"
+                        }
+                    }
+                }
+            }
+        });
+        </script>
+    </script>
+</div>
+{% endblock %}
